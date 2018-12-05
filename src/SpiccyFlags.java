@@ -4,22 +4,9 @@ import java.awt.*;
 public class SpiccyFlags {
     private int blueBoon, redBoon;
     private boolean turnOrder;
-    private Armored[] armored= new Armored[2];
-    private Cavalier[] cavalier= new Cavalier[2];
-    private Infantry[] infantry= new Infantry[2];
-    private Ranger[] ranger= new Ranger[2];
-    private Mage[] mage= new Mage[2];
 
     public SpiccyFlags()
     {
-        for(int t=0; t<2; t++)
-        {
-            armored[t]=new Armored();
-            cavalier[t]=new Cavalier();
-            infantry[t]=new Infantry();
-            ranger[t]=new Ranger();
-            mage[t]=new Mage();
-        }
     }
 
     public void paint(Graphics g)
@@ -37,7 +24,7 @@ public class SpiccyFlags {
         SpiccyFlags c = new SpiccyFlags();
         f.setSize(1020,640);
         f.setVisible(true);
-        f.add(c);
+        f.add(f);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         while (true)

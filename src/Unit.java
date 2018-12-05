@@ -1,7 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
 
-public abstract class Unit implements MouseListener {
+public class Unit{
     private int health, rangeAttack, rangeMovement, attackValue, unitType, x, y;
     private boolean isUpgraded, side, isClicked;
 
