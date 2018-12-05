@@ -2,6 +2,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class Unit{
+    //Blue team is the tue team!
     private int health, rangeAttack, rangeMovement, attackValue, unitType, x, y;
     private boolean isUpgraded, side, isClicked;
 

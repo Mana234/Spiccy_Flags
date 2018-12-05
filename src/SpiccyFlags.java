@@ -1,12 +1,17 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class SpiccyFlags {
+public class SpiccyFlags extends JPanel{
     private int blueBoon, redBoon;
     private boolean turnOrder;
+    private Unit blue = new Unit(100, 100, 100, 100, 100, 100, 100, false, true);
+    private Unit red = new Unit(100, 100, 100, 100, 100, 100, 100, false, false);
 
-    public SpiccyFlags()
-    {
+    public SpiccyFlags() {
+        blueBoon = 2;
+        redBoon = 2;
+        turnOrder = true;
+
     }
 
     public void paint(Graphics g)
@@ -20,11 +25,11 @@ public class SpiccyFlags {
 
     public static void main(String[] args) throws InterruptedException
     {
-        JFrame f = new JFrame("Sorting Room");
+        JFrame f = new JFrame("spiccyFlags");
         SpiccyFlags c = new SpiccyFlags();
+        f.add(c);
         f.setSize(1020,640);
         f.setVisible(true);
-        f.add(f);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         while (true)
