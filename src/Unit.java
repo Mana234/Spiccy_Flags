@@ -1,8 +1,7 @@
 import java.awt.*;
-import java.awt.event.*;
 
 public class Unit{
-    //Blue team is the tue team!
+    //Blue team is the true team!
     private int health, rangeAttack, rangeMovement, attackValue, unitType, x, y;
     private boolean isUpgraded, side, isClicked;
 
@@ -19,15 +18,17 @@ public class Unit{
         this.side=side;
 
     }
-    public void mousePressed(MouseEvent e) {
-        if (e.getX() > x && e.getX() < x+20 && e.getY() > y && e.getY() < y+20){
+    public int getX(){return x;}
+    public int getY(){return y;}
+    public void mousePressed(int X, int Y){
+        if (X > x && X < x+20 && Y > y && Y < y+20) {
             isClicked = true;
         }
     }
-    public void mouseReleased(MouseEvent e){
-        if (isClicked = true){
-            x = e.getX();
-            y = e.getY();
+    public void mouseReleased(int x, int y){
+        while (isClicked) {
+            this.x = x;
+            this.y = y;
             isClicked = false;
         }
     }
