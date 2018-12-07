@@ -21,17 +21,16 @@ public class Unit{
     public int getX(){return x;}
     public int getY(){return y;}
     public void mousePressed(int X, int Y){
+        if (isClicked){
+            x = X;
+            y = Y;
+            isClicked = false;
+        }
         if (X > x && X < x+20 && Y > y && Y < y+20) {
             isClicked = true;
         }
     }
-    public void mouseReleased(int x, int y){
-        while (isClicked) {
-            this.x = x;
-            this.y = y;
-            isClicked = false;
-        }
-    }
+    public void mouseReleased(){}
     public void paint(Graphics2D g) {
 
 
