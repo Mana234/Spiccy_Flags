@@ -34,8 +34,6 @@ public class SpiccyFlags extends JPanel{
             }
             public void mouseReleased(MouseEvent e){}
         });
-        //(100, 100, 100, 100, 100, 100, 100, false, true);
-        //(100, 100, 100, 100, 100, 500, 100, false,
     }
 
     public void paint(Graphics g)
@@ -46,7 +44,11 @@ public class SpiccyFlags extends JPanel{
         g2d.fillRect(0,0,1020,640);
         g2d.setColor(Color.blue);
         for (int i = 0; i < blue.length; i++) {
+            int x = blue[i].getX();
+            int y = blue[i].getY();
             g2d.fillRect(blue[i].getX(), blue[i].getY(), 20, 20);
+            if (blue[i].isClicked()){
+            }
         }
         g2d.setColor(Color.red);
         for (int i = 0; i < red.length; i++) {

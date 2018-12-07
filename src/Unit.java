@@ -20,6 +20,8 @@ public class Unit{
     }
     public int getX(){return x;}
     public int getY(){return y;}
+    public int getRA(){return rangeAttack;}
+    public boolean isClicked(){return isClicked;}
     public void mousePressed(int X, int Y){
         if (isClicked){
             x = X;
