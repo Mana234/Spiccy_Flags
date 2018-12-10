@@ -52,9 +52,16 @@ public class SpiccyFlags extends JPanel{
                 g2d.drawOval(x-ra+10, y-ra+10, 2*ra, 2*ra);
             }
         }
+
         g2d.setColor(Color.red);
         for (int i = 0; i < red.length; i++) {
+            int x = red[i].getX();
+            int y = red[i].getY();
+            int ra = red[i].getRA();
             g2d.fillRect(red[i].getX(), red[i].getY(), 20, 20);
+            if (red[i].isClicked()){
+                g2d.drawOval(x-ra+10, y-ra+10, 2*ra, 2*ra);
+            }
         }
     }
 
