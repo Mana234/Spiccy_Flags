@@ -22,17 +22,26 @@ public class Unit{
     public int getY(){return y;}
     public void mousePressed(int X, int Y){
         if (isClicked){
-            x = X;
-            y = Y;
+
             isClicked = false;
         }
         if (X > x && X < x+20 && Y > y && Y < y+20) {
             isClicked = true;
+            x = X;
+            y = Y;
         }
     }
     public void mouseReleased(){}
     public void paint(Graphics2D g) {
-
+        if(side)
+            g.setColor(Color.blue);
+        else
+            g.setColor(Color.red);
+        if(isClicked)
+        {
+            g.drawOval(x-(rangeMovement/2-10),y-(rangeMovement/2-10),rangeMovement,rangeMovement);
+        }
+        g.fillRect(x, y, 20, 20);
 
     }
 }
