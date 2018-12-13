@@ -12,16 +12,16 @@ public class SpiccyFlags extends JPanel{
     public SpiccyFlags() {
         blueBoon = 2;
         redBoon = 2;
-        blue[0] = new Unit(100, 100, 100, 100, 100, 100, 100, false, true);
-        blue[1] = new Unit(100, 100, 100, 100, 100, 100, 150, false, true);
-        blue[2] = new Unit(100, 100, 100, 100, 100, 100, 200, false, true);
-        blue[3] = new Unit(100, 100, 100, 100, 100, 100, 250, false, true);
-        blue[4] = new Unit(100, 100, 100, 100, 100, 100, 300, false, true);
-        red[0] = new Unit(100, 100, 100, 100, 100, 500, 100, false, false);
-        red[1] = new Unit(100, 100, 100, 100, 100, 500, 150, false, false);
-        red[2] = new Unit(100, 100, 100, 100, 100, 500, 200, false, false);
-        red[3] = new Unit(100, 100, 100, 100, 100, 500, 250, false, false);
-        red[4] = new Unit(100, 100, 100, 100, 100, 500, 300, false, false);
+        blue[0] = new Unit(100, 100, 500, 100, 100, 100, 100, false, true);
+        blue[1] = new Unit(100, 100, 500, 100, 100, 100, 150, false, true);
+        blue[2] = new Unit(100, 100, 500, 100, 100, 100, 200, false, true);
+        blue[3] = new Unit(100, 100, 500, 100, 100, 100, 250, false, true);
+        blue[4] = new Unit(100, 100, 500, 100, 100, 100, 300, false, true);
+        red[0] = new Unit(100, 100, 500, 100, 100, 500, 100, false, false);
+        red[1] = new Unit(100, 100, 500, 100, 100, 500, 150, false, false);
+        red[2] = new Unit(100, 100, 500, 100, 100, 500, 200, false, false);
+        red[3] = new Unit(100, 100, 500, 100, 100, 500, 250, false, false);
+        red[4] = new Unit(100, 100, 500, 100, 100, 500, 300, false, false);
 
         addMouseListener(new MouseListener(){
             public void mouseExited(MouseEvent e){}
@@ -31,8 +31,8 @@ public class SpiccyFlags extends JPanel{
                 for (int i = 0; i<blue.length; i++){blue[i].mousePressed(e.getX(), e.getY());}
                 for (int i = 0; i<red.length; i++){red[i].mousePressed(e.getX(), e.getY());}
             }
-            public void mouseReleased(MouseEvent e){
-                for(int t=0;t<5;t++) {
+            public void mouseReleased(MouseEvent e) {
+                for (int t = 0; t < 5; t++) {
                     for (int i = 0; i < blue.length; i++) {
                         blue[i].mouseReleased(e.getX(), e.getY());
                         blue[i].combat(red[t]);
@@ -41,7 +41,12 @@ public class SpiccyFlags extends JPanel{
                         red[i].mouseReleased(e.getX(), e.getY());
                         red[i].combat(blue[t]);
                     }
-
+                }
+                for (int t = 0; t < 5; t++) {
+                    if (blue[t].getIsDead())
+                        blue[t].setX(-100);
+                    if (red[t].getIsDead())
+                        red[t].setX(-100);
                 }
             }
         });
@@ -54,11 +59,9 @@ public class SpiccyFlags extends JPanel{
         {
             if(blue[t].getIsDead()) {
                 blue[t].setCanAct(false);
-                blue[t].setX(-100);
             }
             if(red[t].getIsDead()) {
                 red[t].setCanAct(false);
-                red[t].setX(-100);
             }
             if(!blue[t].getAct())
                 unitsActed++;

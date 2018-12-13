@@ -36,7 +36,7 @@ public class Unit{
         }
     }
     public void mouseReleased(int X, int Y){
-        if (isClicked && !isDead){//&& Math.sqrt((Math.pow((X-x-10),2))+Math.pow((Y-y-10),2))<rangeMovement/2){
+        if (isClicked && !isDead && Math.sqrt((Math.pow((X-x-10),2))+Math.pow((Y-y-10),2))<rangeMovement/2){
         x = X-10;
         y = Y-10;
         isClicked = false;
@@ -68,7 +68,7 @@ public class Unit{
 
         if(isClicked)
         {
-            g.setColor(Color.red);
+            //g.setColor(Color.red);
             g.drawOval(x-(rangeMovement/2-10),y-(rangeMovement/2-10),rangeMovement,rangeMovement);
         }
     }
