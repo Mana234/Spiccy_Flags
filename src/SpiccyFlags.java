@@ -33,16 +33,15 @@ public class SpiccyFlags extends JPanel{
             }
             public void mouseReleased(MouseEvent e){
                 for(int t=0;t<5;t++) {
-                    blue[t].mouseReleased(e.getX(), e.getY());
-                    red[t].mouseReleased(e.getX(), e.getY());
                     for (int i = 0; i < blue.length; i++) {
-                        //if(!red[i].getIsDead())
-                            blue[t].combat(red[i]);
+                        blue[i].mouseReleased(e.getX(), e.getY());
+                        blue[i].combat(red[t]);
                     }
                     for (int i = 0; i < red.length; i++) {
-                        //if(!blue[i].getIsDead())
-                            red[t].combat(blue[i]);
+                        red[i].mouseReleased(e.getX(), e.getY());
+                        red[i].combat(blue[t]);
                     }
+
                 }
             }
         });
@@ -53,10 +52,14 @@ public class SpiccyFlags extends JPanel{
         int unitsActed=0;
         for(int t=0;t<5;t++)
         {
-            if(blue[t].getIsDead())
+            if(blue[t].getIsDead()) {
                 blue[t].setCanAct(false);
-            if(red[t].getIsDead())
+                blue[t].setX(-100);
+            }
+            if(red[t].getIsDead()) {
                 red[t].setCanAct(false);
+                red[t].setX(-100);
+            }
             if(!blue[t].getAct())
                 unitsActed++;
             if(!red[t].getAct())
@@ -90,12 +93,12 @@ public class SpiccyFlags extends JPanel{
         g2d.setColor(Color.blue);
         for(int t=0; t<blue.length; t++)
         {
-            //if(!blue[t].getIsDead())
+            if(!blue[t].getIsDead())
                 blue[t].paint(g2d);
         }
         for(int t=0; t<red.length; t++)
         {
-            //if(!red[t].getIsDead())
+            if(!red[t].getIsDead())
                 red[t].paint(g2d);
         }
     }
