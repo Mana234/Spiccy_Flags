@@ -19,29 +19,28 @@ public class Unit{
         canAct=side;
         isDead=false;
     }
-    public int getX(){return x;}
-    public int getY(){return y;}
-    public int getRA(){return rangeMovement;}
+    //public int getX(){return x;}
+    //public int getY(){return y;}
+    //public int getRA(){return rangeAttack;}
     public int getH(){return health;}
     public boolean getAct(){return canAct;}
     public boolean getIsDead(){return isDead;}
-    public boolean isClicked(){return isClicked;}
+    //public boolean isClicked(){return isClicked;}
 
     public void setH(int h){health = h;}
     public void setX(int X){x=X;}
     public void setCanAct(boolean act){canAct=act;}
     public void mousePressed(int X, int Y){
-        if (X > x && X < x+20 && Y > y && Y < y+20 && canAct && !isDead) {
+        if (X > x && X < x+20 && Y > y && Y < y+20 && canAct && !isDead)
             isClicked = true;
-        }
     }
-    public void mouseReleased(int X, int Y){
-        if (isClicked && !isDead && Math.sqrt((Math.pow((X-x-10),2))+Math.pow((Y-y-10),2))<rangeMovement/2){
-        x = X-10;
-        y = Y-10;
-        isClicked = false;
-        canAct=false;
+    public void mouseReleased(int X, int Y) {
+        if (isClicked && !isDead && Math.sqrt((Math.pow((X - x - 10), 2)) + Math.pow((Y - y - 10), 2)) < rangeMovement / 2) {
+            x = X - 10;
+            y = Y - 10;
+            canAct = false;
         }
+        isClicked = false;
     }
     public void combat(Unit other){
         if (Math.sqrt((Math.pow((other.x-x-10), 2)) + Math.pow((other.y - y - 10), 2)) < rangeAttack/2 ) {
