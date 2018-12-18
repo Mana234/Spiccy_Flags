@@ -2,7 +2,7 @@ import java.awt.*;
 
 public class Unit{
     //Blue team is the true team!
-    private int health, rangeAttack, rangeMovement, attackValue, unitType, x, y;
+    private int health, rangeAttack, rangeMovement, attackValue, unitType, x, y, mx, my;
     private boolean isUpgraded, side, isClicked, canAct, isDead;
 
     public Unit(int h, int ra, int rm, int a, int u, int x, int y, boolean upgraded, boolean side)
@@ -32,10 +32,17 @@ public class Unit{
     public void setCanAct(boolean act){canAct=act;}
     public void mousePressed(int X, int Y){
         if (X > x && X < x+20 && Y > y && Y < y+20 && canAct && !isDead)
-            isClicked = true;
+            isClicked = true; mx = x; my = y;
+    }
+    public void mouseDragged(int X, int Y){
+        if(isClicked)
+        {
+            x=X-10;
+            y=Y-10;
+        }
     }
     public void mouseReleased(int X, int Y) {
-        if (isClicked && !isDead && Math.sqrt((Math.pow((X - x - 10), 2)) + Math.pow((Y - y - 10), 2)) < rangeMovement / 2) {
+        if (isClicked && !isDead && Math.sqrt((Math.pow((X - mx - 10), 2)) + Math.pow((Y - my - 10), 2)) < rangeMovement / 2) {
             x = X - 10;
             y = Y - 10;
             canAct = false;
@@ -68,7 +75,7 @@ public class Unit{
         if(isClicked)
         {
             //g.setColor(Color.red);
-            g.drawOval(x-(rangeMovement/2-10),y-(rangeMovement/2-10),rangeMovement,rangeMovement);
+            g.drawOval(mx-(rangeMovement/2-10),my-(rangeMovement/2-10),rangeMovement,rangeMovement);
         }
     }
 }

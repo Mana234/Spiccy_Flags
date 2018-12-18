@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
 public class SpiccyFlags extends JPanel{
     private int blueBoon, redBoon;
@@ -48,6 +49,16 @@ public class SpiccyFlags extends JPanel{
                     if (red[t].getIsDead())
                         red[t].setX(-100);
                 }
+            }
+        });
+        addMouseMotionListener(new MouseMotionListener() {
+            public void mouseDragged(MouseEvent e) {
+                for (int i = 0; i<blue.length; i++){blue[i].mouseDragged(e.getX(), e.getY());}
+                for (int i = 0; i<red.length; i++){red[i].mouseDragged(e.getX(), e.getY());}
+            }
+
+            public void mouseMoved(MouseEvent e) {
+
             }
         });
     }
