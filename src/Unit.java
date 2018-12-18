@@ -47,6 +47,10 @@ public class Unit{
             y = Y - 10;
             canAct = false;
         }
+        else if(Math.sqrt((Math.pow((X - mx - 10), 2)) + Math.pow((Y - my - 10), 2)) > rangeMovement / 2){
+            x=mx;
+            y=my;
+        }
         isClicked = false;
     }
     public void combat(Unit other){
@@ -75,6 +79,7 @@ public class Unit{
         if(isClicked)
         {
             //g.setColor(Color.red);
+            g.drawOval(x-(rangeAttack/2-10),y-(rangeAttack/2-10),rangeAttack,rangeAttack);
             g.drawOval(mx-(rangeMovement/2-10),my-(rangeMovement/2-10),rangeMovement,rangeMovement);
         }
     }

@@ -33,21 +33,23 @@ public class SpiccyFlags extends JPanel{
                 for (int i = 0; i<red.length; i++){red[i].mousePressed(e.getX(), e.getY());}
             }
             public void mouseReleased(MouseEvent e) {
-                for (int t = 0; t < 5; t++) {
-                    for (int i = 0; i < blue.length; i++) {
-                        blue[i].mouseReleased(e.getX(), e.getY());
-                        blue[i].combat(red[t]);
+                for(int retry=0;retry<2;retry++) {
+                    for (int t = 0; t < 5; t++) {
+                        for (int i = 0; i < blue.length; i++) {
+                            blue[i].mouseReleased(e.getX(), e.getY());
+                            blue[i].combat(red[t]);
+                        }
+                        for (int i = 0; i < red.length; i++) {
+                            red[i].mouseReleased(e.getX(), e.getY());
+                            red[i].combat(blue[t]);
+                        }
                     }
-                    for (int i = 0; i < red.length; i++) {
-                        red[i].mouseReleased(e.getX(), e.getY());
-                        red[i].combat(blue[t]);
+                    for (int t = 0; t < 5; t++) {
+                        if (blue[t].getIsDead())
+                            blue[t].setX(-100);
+                        if (red[t].getIsDead())
+                            red[t].setX(-100);
                     }
-                }
-                for (int t = 0; t < 5; t++) {
-                    if (blue[t].getIsDead())
-                        blue[t].setX(-100);
-                    if (red[t].getIsDead())
-                        red[t].setX(-100);
                 }
             }
         });
