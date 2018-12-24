@@ -2,7 +2,7 @@ import java.awt.*;
 
 public class Unit{
     //Blue team is the true team!
-    private int health, rangeAttack, rangeMovement, attackValue, unitType, x, y;
+    private int health, rangeAttack, rangeMovement, attackValue, unitType, x, y, mx, my;
     private boolean isUpgraded, side, isClicked, canAct, isDead;
 
     public Unit(int h, int ra, int rm, int a, int u, int x, int y, boolean upgraded, boolean side)
@@ -19,29 +19,39 @@ public class Unit{
         canAct=side;
         isDead=false;
     }
-    public int getX(){return x;}
-    public int getY(){return y;}
-    public int getRA(){return rangeMovement;}
+    //public int getX(){return x;}
+    //public int getY(){return y;}
+    //public int getRA(){return rangeAttack;}
     public int getH(){return health;}
     public boolean getAct(){return canAct;}
     public boolean getIsDead(){return isDead;}
-    public boolean isClicked(){return isClicked;}
+    //public boolean isClicked(){return isClicked;}
 
     public void setH(int h){health = h;}
     public void setX(int X){x=X;}
     public void setCanAct(boolean act){canAct=act;}
     public void mousePressed(int X, int Y){
-        if (X > x && X < x+20 && Y > y && Y < y+20 && canAct && !isDead) {
-            isClicked = true;
+        if (X > x && X < x+20 && Y > y && Y < y+20 && canAct && !isDead)
+            isClicked = true; mx = x; my = y;
+    }
+    public void mouseDragged(int X, int Y){
+        if(isClicked)
+        {
+            x=X-10;
+            y=Y-10;
         }
     }
-    public void mouseReleased(int X, int Y){
-        if (isClicked && !isDead && Math.sqrt((Math.pow((X-x-10),2))+Math.pow((Y-y-10),2))<rangeMovement/2){
-        x = X-10;
-        y = Y-10;
-        isClicked = false;
-        canAct=false;
+    public void mouseReleased(int X, int Y) {
+        if (isClicked && !isDead && Math.sqrt((Math.pow((X - mx - 10), 2)) + Math.pow((Y - my - 10), 2)) < rangeMovement / 2) {
+            x = X - 10;
+            y = Y - 10;
+            canAct = false;
         }
+        else if(Math.sqrt((Math.pow((X - mx - 10), 2)) + Math.pow((Y - my - 10), 2)) > rangeMovement / 2){
+            x=mx;
+            y=my;
+        }
+        isClicked = false;
     }
     public void combat(Unit other){
         if (Math.sqrt((Math.pow((other.x-x-10), 2)) + Math.pow((other.y - y - 10), 2)) < rangeAttack/2 ) {
@@ -69,7 +79,8 @@ public class Unit{
         if(isClicked)
         {
             //g.setColor(Color.red);
-            g.drawOval(x-(rangeMovement/2-10),y-(rangeMovement/2-10),rangeMovement,rangeMovement);
+            g.drawOval(x-(rangeAttack/2-10),y-(rangeAttack/2-10),rangeAttack,rangeAttack);
+            g.drawOval(mx-(rangeMovement/2-10),my-(rangeMovement/2-10),rangeMovement,rangeMovement);
         }
     }
 }
