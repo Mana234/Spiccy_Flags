@@ -3,6 +3,8 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 public class SpiccyFlags extends JPanel{
     private int blueBoon, redBoon;
@@ -13,33 +15,43 @@ public class SpiccyFlags extends JPanel{
     public SpiccyFlags() {
         blueBoon = 2;
         redBoon = 2;
-        blue[0] = new Unit(100, 100, 500, 100, 100, 100, 100, false, true);
-        blue[1] = new Unit(100, 100, 500, 100, 100, 100, 150, false, true);
-        blue[2] = new Unit(100, 100, 500, 100, 100, 100, 200, false, true);
-        blue[3] = new Unit(100, 100, 500, 100, 100, 100, 250, false, true);
-        blue[4] = new Unit(100, 100, 500, 100, 100, 100, 300, false, true);
-        red[0] = new Unit(100, 100, 500, 100, 100, 500, 100, false, false);
-        red[1] = new Unit(100, 100, 500, 100, 100, 500, 150, false, false);
-        red[2] = new Unit(100, 100, 500, 100, 100, 500, 200, false, false);
-        red[3] = new Unit(100, 100, 500, 100, 100, 500, 250, false, false);
-        red[4] = new Unit(100, 100, 500, 100, 100, 500, 300, false, false);
+        blue[3] = new Mage(100, 100, 500, 100, 100, 100, 100, false, true);
+        blue[1] = new Infantry(100, 100, 500, 50, 100, 100, 150, false, true);
+        blue[2] = new Armor(100, 100, 500, 100, 100, 100, 200, false, true);
+        blue[0] = new Cavalier(100, 100, 500, 100, 100, 100, 250, false, true);
+        blue[4] = new Ranger(100, 100, 500, 100, 100, 100, 300, false, true);
+        red[3] = new Mage(100, 100, 500, 100, 100, 500, 100, false, false);
+        red[1] = new Infantry(100, 100, 500, 50, 100, 500, 150, false, false);
+        red[2] = new Armor(100, 100, 500, 100, 100, 500, 200, false, false);
+        red[0] = new Cavalier(100, 100, 500, 100, 100, 500, 250, false, false);
+        red[4] = new Ranger(100, 100, 500, 100, 100, 500, 300, false, false);
 
         addMouseListener(new MouseListener(){
             public void mouseExited(MouseEvent e){}
             public void mouseClicked(MouseEvent e){}
             public void mouseEntered(MouseEvent e){}
             public void mousePressed(MouseEvent e){
-                for (int i = 0; i<blue.length; i++){blue[i].mousePressed(e.getX(), e.getY());}
-                for (int i = 0; i<red.length; i++){red[i].mousePressed(e.getX(), e.getY());}
+                for (int i = 0; i<5; i++){
+                    blue[i].mousePressed(e.getX(), e.getY());
+                    red[i].mousePressed(e.getX(), e.getY());
+                }
+
+
             }
             public void mouseReleased(MouseEvent e) {
+                for (int i = 3; i<=4; i++){
+                    for(int t = 0; t<5; t++)
+                    {
+                        blue[i].ability(e.getX(),e.getY(),red[t]);
+                        red[i].ability(e.getX(),e.getY(),blue[t]);
+                    }
+                }
                 for(int retry=0;retry<2;retry++) {
                     for (int t = 0; t < 5; t++) {
-                        for (int i = 0; i < blue.length; i++) {
+                        for (int i = 0; i < 5; i++) {
                             blue[i].mouseReleased(e.getX(), e.getY());
                             blue[i].combat(red[t]);
-                        }
-                        for (int i = 0; i < red.length; i++) {
+
                             red[i].mouseReleased(e.getX(), e.getY());
                             red[i].combat(blue[t]);
                         }
@@ -63,6 +75,20 @@ public class SpiccyFlags extends JPanel{
 
             }
         });
+        addKeyListener(new KeyListener() {
+            public void keyTyped(KeyEvent e) {
+            }
+            @Override
+            public void keyReleased(KeyEvent e) {
+                for (int i = 0; i<5; i++){
+                    blue[i].keyReleased(e);
+                    red[i].keyReleased(e);
+                }
+            }
+            public void keyPressed(KeyEvent e) {
+            }
+        });
+        setFocusable(true);
     }
 
     public void changeTurn()
@@ -107,15 +133,22 @@ public class SpiccyFlags extends JPanel{
         g2d.setColor(Color.green);
         g2d.fillRect(0,0,1020,640);
         g2d.setColor(Color.blue);
-        for(int t=0; t<blue.length; t++)
-        {
-            if(!blue[t].getIsDead())
-                blue[t].paint(g2d);
+        for(int t=0; t<5; t++) {
+            if (Turn)
+                red[t].showDanger(g2d);
+            else
+                blue[t].showDanger(g2d);
         }
-        for(int t=0; t<red.length; t++)
+
+            for(int t=0; t<5; t++)
         {
-            if(!red[t].getIsDead())
+            if(!blue[t].getIsDead()) {
+                blue[t].paint(g2d);
+            }
+            if(!red[t].getIsDead()) {
                 red[t].paint(g2d);
+            }
+
         }
     }
 
