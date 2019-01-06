@@ -1,19 +1,21 @@
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
+
 
 public abstract class Unit{
     //Blue team is the true team!
-    private int health,maxhealth, rangeAttack, rangeMovement, attackValue, unitType, x, y, mx, my;
+    private int health,maxHealth, rangeAttack, rangeMovement, attackValue,x, y, mx, my;
     private boolean isUpgraded, side, isClicked, canAct, isDead, toggle, highlight;
+    BufferedImage red, redUsed, redUp, redUpUsed, blue, blueUsed, blueUp, blueUpUsed;
 
-    public Unit(int h, int ra, int rm, int a, int u, int x, int y, boolean upgraded, boolean side)
+    public Unit(int h, int ra, int rm, int a, int x, int y, boolean upgraded, boolean side)
     {
         health=h;
-        maxhealth=h;
+        maxHealth=h;
         rangeAttack=ra;
         rangeMovement=rm;
         attackValue=a;
-        unitType=u;
         this.x=x;
         this.y=y;
         mx=x;
@@ -22,21 +24,34 @@ public abstract class Unit{
         this.side=side;
         canAct=side;
         isDead=false;
+
+        blue=null;
+        blueUp=null;
+        blueUpUsed=null;
+        blueUsed=null;
+
+        red=null;
+        redUp=null;
+        redUpUsed=null;
+        redUsed=null;
     }
 
     public int getX(){return x;}
     public int getY(){return y;}
+    public int getMX() {return mx;}
+    public int getMY() {return my;}
     public int getRM(){return rangeMovement;}
     public int getRA(){return rangeAttack;}
     public int getAV(){return attackValue;}
     public int getH(){return health;}
-    public int getMH() {return maxhealth; }
+    public int getMH() {return maxHealth; }
     public boolean getAct(){return canAct;}
     public boolean getIsDead(){return isDead;}
     public boolean isClicked(){return isClicked;}
 
     public void setH(int h){health = h;}
     public void setX(int X){x=X;}
+    public void setY(int Y){y=Y;}
     public void setCanAct(boolean act){canAct=act;}
     public void setDead(boolean dead){isDead=dead;}
     public void mousePressed(int X, int Y){
@@ -100,21 +115,41 @@ public abstract class Unit{
     }
 
     public void paint(Graphics2D g) {
-        if(!canAct)
-            g.setColor(Color.black);
-        else if(isUpgraded)
-            g.setColor(Color.yellow);
-        else if(side)
-            g.setColor(Color.blue);
-        else
-            g.setColor(Color.red);
-        g.fillRect(x,y,20,20);
+        if (side) {
+            if (isUpgraded) {
+                if (canAct)
+                    g.drawImage(blueUp, x, y,20,20, null);
+                else
+                    g.drawImage(blueUpUsed, x, y,20, 20, null);
+            }
 
-        if(isClicked)
-        {
+            else {
+                if (getAct())
+                    g.drawImage(blue, x, y,20,20, null);
+                else
+                    g.drawImage(blueUsed, x, y,20,20, null);
+            }
+        }
+
+        if (!side) {
+            if (isUpgraded) {
+                if (canAct)
+                    g.drawImage(redUp, x, y,20,20, null);
+                else
+                    g.drawImage(redUpUsed, x, y,20,20, null);
+            }
+            else {
+                if (getAct())
+                    g.drawImage(red, x, y,20,20, null);
+                else
+                    g.drawImage(redUsed, x, y,20,20, null);
+            }
+        }
+
+        if (this.isClicked()) {
             g.setColor(Color.black);
-            g.drawOval(x-(rangeAttack/2-10),y-(rangeAttack/2-10),rangeAttack,rangeAttack);
-            g.drawOval(mx-(rangeMovement/2-10),my-(rangeMovement/2-10),rangeMovement,rangeMovement);
+            g.drawOval(x - (rangeAttack / 2 - 10), y - (rangeAttack / 2 - 10), rangeAttack, rangeAttack);
+            g.drawOval(mx - (rangeMovement / 2 - 10), my - (rangeMovement / 2 - 10), rangeMovement, rangeMovement);
         }
     }
 

@@ -15,16 +15,16 @@ public class SpiccyFlags extends JPanel{
     public SpiccyFlags() {
         blueBoon = 2;
         redBoon = 2;
-        blue[3] = new Mage(100, 100, 500, 100, 100, 100, 100, false, true);
-        blue[1] = new Infantry(100, 100, 500, 50, 100, 100, 150, false, true);
-        blue[2] = new Armor(100, 100, 500, 100, 100, 100, 200, false, true);
-        blue[0] = new Cavalier(100, 100, 500, 100, 100, 100, 250, false, true);
-        blue[4] = new Ranger(100, 100, 500, 100, 100, 100, 300, false, true);
-        red[3] = new Mage(100, 100, 500, 100, 100, 500, 100, false, false);
-        red[1] = new Infantry(100, 100, 500, 50, 100, 500, 150, false, false);
-        red[2] = new Armor(100, 100, 500, 100, 100, 500, 200, false, false);
-        red[0] = new Cavalier(100, 100, 500, 100, 100, 500, 250, false, false);
-        red[4] = new Ranger(100, 100, 500, 100, 100, 500, 300, false, false);
+        blue[3] = new Mage(100, 100, 500, 100, 100, 100, false, true);
+        blue[1] = new Infantry(100, 100, 500, 50, 100, 150, false, true);
+        blue[2] = new Armor(100, 100, 500, 100, 100, 200, false, true);
+        blue[0] = new Cavalier(100, 100, 500, 100, 100, 250, false, true);
+        blue[4] = new Ranger(100, 100, 500, 100, 100, 300, false, true);
+        red[3] = new Mage(100, 100, 500, 100,  500, 100, false, false);
+        red[1] = new Infantry(100, 100, 500, 50, 500, 150, false, false);
+        red[2] = new Armor(100, 100, 500, 100, 500, 200, false, false);
+        red[0] = new Cavalier(100, 100, 500, 100, 500, 250, false, false);
+        red[4] = new Ranger(100, 100, 500, 100,  500, 300, false, false);
 
         addMouseListener(new MouseListener(){
             public void mouseExited(MouseEvent e){}
@@ -63,6 +63,7 @@ public class SpiccyFlags extends JPanel{
                             red[t].setX(-100);
                     }
                 }
+
             }
         });
         addMouseMotionListener(new MouseMotionListener() {
@@ -140,7 +141,7 @@ public class SpiccyFlags extends JPanel{
                 blue[t].showDanger(g2d);
         }
 
-            for(int t=0; t<5; t++)
+        for(int t=0; t<5; t++)
         {
             if(!blue[t].getIsDead()) {
                 blue[t].paint(g2d);
