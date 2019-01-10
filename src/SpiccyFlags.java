@@ -1,4 +1,6 @@
 import javax.swing.*;
+import javax.sound.sampled.*;
+import java.io.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -90,6 +92,20 @@ public class SpiccyFlags extends JPanel{
             }
         });
         setFocusable(true);
+        try {
+            File titleTheme = new File("res\\Trap Knight.wav");
+            AudioInputStream audioIn = AudioSystem.getAudioInputStream(titleTheme);
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioIn);
+            clip.start();
+        } catch (UnsupportedAudioFileException e){
+            e.printStackTrace();
+        } catch (IOException e){
+            e.printStackTrace();
+        } catch (LineUnavailableException e){
+            e.printStackTrace();
+        }
+
     }
 
     public void changeTurn()

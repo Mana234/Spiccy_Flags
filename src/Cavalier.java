@@ -23,7 +23,6 @@ public class Cavalier extends Unit {
     }
 
     public void combat(Unit other){
-        //if()
     }
 
 }
