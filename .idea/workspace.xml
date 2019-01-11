@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7eb1f809-bda4-42a2-b4d5-ce1165e3341a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Cavalier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Cavalier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SpiccyFlags.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SpiccyFlags.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,50 +13,32 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SpiccyFlags.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="95" column="60" selection-start-line="95" selection-start-column="60" selection-end-line="95" selection-end-column="60" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="2839">
+              <caret line="173" column="5" selection-start-line="173" selection-start-column="5" selection-end-line="173" selection-end-column="5" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Cavalier.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="24" column="35" selection-start-line="24" selection-start-column="35" selection-end-line="24" selection-end-column="35" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Ranger.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="850">
-              <caret line="51" column="32" selection-start-line="51" selection-start-column="32" selection-end-line="51" selection-end-column="32" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Unit.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="11" column="90" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="90" />
+            <state relative-caret-position="340">
+              <caret line="136" column="16" selection-start-line="136" selection-start-column="16" selection-end-line="136" selection-end-column="16" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Armour.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="4" selection-start-line="4" selection-end-line="4" />
             </state>
           </provider>
         </entry>
@@ -83,63 +62,31 @@
         <option value="$PROJECT_DIR$/src/Armored.java" />
         <option value="$PROJECT_DIR$/src/Unit2.java" />
         <option value="$PROJECT_DIR$/src/Infantry.java" />
+        <option value="$PROJECT_DIR$/src/Cavalier.java" />
         <option value="$PROJECT_DIR$/src/Armor.java" />
         <option value="$PROJECT_DIR$/src/Mage.java" />
-        <option value="$PROJECT_DIR$/src/Unit.java" />
         <option value="$PROJECT_DIR$/src/Ranger.java" />
-        <option value="$PROJECT_DIR$/src/Cavalier.java" />
+        <option value="$PROJECT_DIR$/src/Calvalier.java" />
         <option value="$PROJECT_DIR$/src/SpiccyFlags.java" />
+        <option value="$PROJECT_DIR$/src/Armour.java" />
+        <option value="$PROJECT_DIR$/src/Unit.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="633" />
-    <option name="width" value="654" />
-    <option name="height" value="991" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1296" />
+    <option name="height" value="1000" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="Spiccy Flags" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Spiccy_Flags" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Spiccy Flags" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Spiccy_Flags" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope">
-        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
-          <expand>
-            <path>
-              <item name="Spiccy Flags" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="Spiccy_Flags" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-            </path>
-            <path>
-              <item name="Spiccy Flags" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="Spiccy_Flags" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="PackagesPane" />
-      <pane id="AndroidView" />
-    </panes>
+    <panes />
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546980164091" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546976690246" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../ILU" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
@@ -238,20 +185,21 @@
       <option name="project" value="LOCAL" />
       <updated>1546462380175</updated>
     </task>
-    <task id="LOCAL-00009" summary="Mage ability done, Unit sprites added">
-      <created>1546810516481</created>
+    <task id="LOCAL-00009" summary="added notes">
+      <created>1547059041303</created>
       <option name="number" value="00009" />
       <option name="presentableId" value="LOCAL-00009" />
       <option name="project" value="LOCAL" />
-      <updated>1546810516481</updated>
+      <updated>1547059041303</updated>
     </task>
     <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="1000" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.1512945" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.50161815" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -260,15 +208,15 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49029127" weight="0.34832758" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49029127" visible="true" weight="0.3490991" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3995381" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50970876" side_tool="true" weight="0.32756633" />
-      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49919093" weight="0.3290993" />
-      <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.49190938" weight="0.32641292" />
+      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49919093" weight="0.32871974" />
+      <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.49190938" weight="0.3265766" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -288,8 +236,8 @@
     <MESSAGE value="Added combat and turn order, moved program that paints units to Unit class and changed how movement works" />
     <MESSAGE value="re-unjanked combat" />
     <MESSAGE value="Abstract units, Infantry and Ranger abilities done" />
-    <MESSAGE value="Mage ability done, Unit sprites added" />
-    <option name="LAST_COMMIT_MESSAGE" value="Mage ability done, Unit sprites added" />
+    <MESSAGE value="added notes" />
+    <option name="LAST_COMMIT_MESSAGE" value="added notes" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
@@ -312,71 +260,31 @@
     <entry file="file://$PROJECT_DIR$/Spiccy_Flags.iml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="jar://$USER_HOME$/jdk-11.0.1_windows-x64_bin/jdk-11.0.1/lib/src.zip!/java.desktop/java/awt/Component.java" />
-    <entry file="file://$PROJECT_DIR$/src/Infantry.java">
+    <entry file="jar://$PROJECT_DIR$/../../jdk-11.0.1_windows-x64_bin/jdk-11.0.1/lib/src.zip!/java.desktop/java/awt/Component.java" />
+    <entry file="file://$PROJECT_DIR$/src/Infantry.java" />
+    <entry file="file://$PROJECT_DIR$/src/Cavalier.java" />
+    <entry file="file://$PROJECT_DIR$/src/Armor.java" />
+    <entry file="file://$PROJECT_DIR$/src/Mage.java" />
+    <entry file="file://$PROJECT_DIR$/src/Ranger.java" />
+    <entry file="file://$PROJECT_DIR$/src/Calvalier.java" />
+    <entry file="file://$PROJECT_DIR$/src/SpiccyFlags.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="4" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="4" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="2839">
+          <caret line="173" column="5" selection-start-line="173" selection-start-column="5" selection-end-line="173" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Armor.java">
+    <entry file="file://$PROJECT_DIR$/src/Armour.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="33" selection-start-line="22" selection-start-column="33" selection-end-line="22" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Mage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="771">
-          <caret line="47" column="5" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Ranger.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="850">
-          <caret line="51" column="32" selection-start-line="51" selection-start-column="32" selection-end-line="51" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="68">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Unit.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="11" column="90" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="90" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Cavalier.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="35" selection-start-line="24" selection-start-column="35" selection-end-line="24" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/SpiccyFlags.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="95" column="60" selection-start-line="95" selection-start-column="60" selection-end-line="95" selection-end-column="60" />
+        <state relative-caret-position="340">
+          <caret line="136" column="16" selection-start-line="136" selection-start-column="16" selection-end-line="136" selection-end-column="16" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
