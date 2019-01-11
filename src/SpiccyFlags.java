@@ -48,14 +48,15 @@ public class SpiccyFlags extends JPanel{
                         red[i].ability(e.getX(),e.getY(),blue[t]);
                     }
                 }
-                for(int retry=0;retry<2;retry++) {
                     for (int t = 0; t < 5; t++) {
                         for (int i = 0; i < 5; i++) {
                             blue[i].mouseReleased(e.getX(), e.getY());
-                            blue[i].combat(red[t]);
+                            blue[i].combatReceiving(red[t]);
+                            blue[i].combatTaking(red[t]);
 
                             red[i].mouseReleased(e.getX(), e.getY());
-                            red[i].combat(blue[t]);
+                            red[i].combatReceiving(blue[t]);
+                            red[i].combatTaking(blue[t]);
                         }
                     }
                     for (int t = 0; t < 5; t++) {
@@ -65,8 +66,6 @@ public class SpiccyFlags extends JPanel{
                             red[t].setX(-100);
                     }
                 }
-
-            }
         });
         addMouseMotionListener(new MouseMotionListener() {
             public void mouseDragged(MouseEvent e) {

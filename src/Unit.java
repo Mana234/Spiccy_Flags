@@ -100,18 +100,19 @@ public abstract class Unit{
 
     }
 
-    public void combat(Unit other){
+    public void combatReceiving(Unit other){
         if (Math.sqrt((Math.pow((other.x-x-10), 2)) + Math.pow((other.y - y - 10), 2)) < rangeAttack/2 ) {
             other.setH(other.getH() - attackValue);
             if (other.getH() < 0)
                 other.isDead = true;
         }
+    }
+    public void combatTaking(Unit other){
         if (Math.sqrt((Math.pow((other.x - x - 10), 2)) + Math.pow((other.y - y - 10), 2)) < other.rangeAttack/2 ) {
             health = health - other.attackValue;
             if (health < 0)
                 isDead = true;
         }
-
     }
 
     public void paint(Graphics2D g) {

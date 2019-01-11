@@ -15,7 +15,7 @@ public class Armor extends Unit {
             blueUpUsed = ImageIO.read(new File("res\\armourBlueUpgradedUsed.png"));
         } catch (IOException e) {
         }
-        try{
+        try {
             red = ImageIO.read(new File("res\\armourRed.png"));
             redUsed = ImageIO.read(new File("res\\armourRedUsed.png"));
             redUp = ImageIO.read(new File("res\\armourRedUpgraded.png"));
@@ -23,5 +23,4 @@ public class Armor extends Unit {
         } catch (IOException e) {
         }
     }
-
 }
