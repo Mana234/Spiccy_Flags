@@ -24,7 +24,7 @@ public class Infantry extends Unit {
 
     public void combat(Unit other)
     {
-        super.combatTaking(other);
+        super.combatDealing(other);
         if (Math.sqrt((Math.pow((other.getX()-this.getX()-10), 2)) + Math.pow((other.getY() - this.getY() - 10), 2)) < this.getRA()/2 && !this.getIsDead()) {
             other.setH(other.getH() - this.getAV());
             if (other.getH() < 0)
