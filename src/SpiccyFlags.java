@@ -51,11 +51,11 @@ public class SpiccyFlags extends JPanel{
                     for (int t = 0; t < 5; t++) {
                         for (int i = 0; i < 5; i++) {
                             blue[i].mouseReleased(e.getX(), e.getY());
-                            blue[i].combatReceiving(red[t]);
+                            blue[i].combatDealing(red[t]);
                             blue[i].combatTaking(red[t]);
 
                             red[i].mouseReleased(e.getX(), e.getY());
-                            red[i].combatReceiving(blue[t]);
+                            red[i].combatDealing(blue[t]);
                             red[i].combatTaking(blue[t]);
                         }
                     }
