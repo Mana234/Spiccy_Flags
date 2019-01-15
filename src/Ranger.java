@@ -2,8 +2,8 @@ import javax.imageio.ImageIO;
 import java.io.*;
 
 public class Ranger extends Unit {
-    private int critChance;
-    private int critDamage;
+    private double critChance;
+    private double critDamage;
 
     public Ranger(int h, int ra, int rm, int a, int x, int y, boolean upgraded, boolean side) {
         super(h, ra, rm, a, x, y, upgraded, side);
@@ -24,12 +24,12 @@ public class Ranger extends Unit {
         }
 
         if(upgraded){
-            critChance=15;
-            critDamage=2;
+            critChance=20;
+            critDamage=0.5;
         }
         else{
             critChance=10;
-            critDamage=5;
+            critDamage=0.5;
         }
     }
 
@@ -46,7 +46,7 @@ public class Ranger extends Unit {
         if(this.isClicked()&& !inRange(other) && X > other.getX() && X < other.getX()+20 && Y > other.getY() && Y < other.getY()+20){
             double crit=Math.random()*100;
             if(crit<critChance)
-                other.setH(other.getH()-15-(other.getMH()/critDamage));
+                other.setH(other.getH()-(int)(other.getMH()*critDamage));
             else
                 other.setH(other.getH()-15);
             this.setCanAct(false);

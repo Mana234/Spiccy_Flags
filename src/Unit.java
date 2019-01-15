@@ -103,19 +103,26 @@ public abstract class Unit{
     public void combatDealing(Unit other){
         if (Math.sqrt((Math.pow((other.x-x-10), 2)) + Math.pow((other.y - y - 10), 2)) < rangeAttack/2 ) {
             other.setH(other.getH() - attackValue);
-            if (other.getH() < 0)
+            if (other.getH() <= 0)
                 other.isDead = true;
         }
     }
     public void combatTaking(Unit other){
         if (Math.sqrt((Math.pow((other.x - x - 10), 2)) + Math.pow((other.y - y - 10), 2)) < other.rangeAttack/2 && !other.isDead) {
             health = health - other.attackValue;
-            if (health < 0)
+            if (health <= 0)
                 isDead = true;
         }
     }
 
     public void paint(Graphics2D g) {
+        g.setColor(Color.black);
+        g.drawRect(x-1,y-11,(maxHealth/5)+1,5);
+        g.setColor(Color.red);
+        g.fillRect(x,y-10,maxHealth/5,4);
+        g.setColor(Color.green);
+        g.fillRect(x,y-10,health/5,4);
+
         if (side) {
             if (isUpgraded) {
                 if (canAct)
