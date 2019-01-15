@@ -95,10 +95,7 @@ public abstract class Unit{
         }
     }
 
-    public void ability(int X, int Y, Unit other)
-    {
-
-    }
+    public void ability(int X, int Y, Unit other) {}
 
     public void combatDealing(Unit other){
         if (Math.sqrt((Math.pow((other.x-x-10), 2)) + Math.pow((other.y - y - 10), 2)) < rangeAttack/2 ) {

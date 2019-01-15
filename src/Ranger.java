@@ -35,7 +35,7 @@ public class Ranger extends Unit {
 
     public boolean inRange(Unit other)
     {
-        if(Math.sqrt((Math.pow((other.getX()-10), 2)) + Math.pow((other.getY() - getY() - 10), 2)) < getRM()/2 )
+        if(Math.sqrt((Math.pow((other.getX()-this.getX()-10), 2)) + Math.pow((other.getY() - getY() - 10), 2)) < getRM()/2 )
             return true;
         else
             return false;
@@ -43,7 +43,7 @@ public class Ranger extends Unit {
 
     public void ability(int X, int Y, Unit other){
         super.ability(X,Y,other);
-        if(this.isClicked()&& !inRange(other) && X > other.getX() && X < other.getX()+20 && Y > other.getY() && Y < other.getY()+20){
+        if(this.isClicked()&& inRange(other) && X > other.getX() && X < other.getX()+20 && Y > other.getY() && Y < other.getY()+20){
             double crit=Math.random()*100;
             if(crit<critChance)
                 other.setH(other.getH()-(int)(other.getMH()*critDamage));

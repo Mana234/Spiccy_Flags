@@ -26,7 +26,7 @@ public class Mage extends Unit {
 
     public boolean inRange(Unit other)
     {
-        if(Math.sqrt((Math.pow((other.getX()-10), 2)) + Math.pow((other.getY() - getY() - 10), 2)) < getRM()/2 )
+        if(Math.sqrt((Math.pow((this.getX()-other.getX()-10), 2)) + Math.pow((this.getY() - other.getY() - 10), 2)) < this.getRM()/2 )
             return true;
         else
             return false;
@@ -39,7 +39,7 @@ public class Mage extends Unit {
         int y = other.getY()-this.getMY();
         double h = Math.sqrt((Math.pow((other.getX()-this.getMX()), 2)) + Math.pow((other.getY() - this.getMY()), 2))-100;
 
-        if(this.isClicked()&&!inRange(other) && X > other.getX() && X < other.getX()+20 && Y > other.getY() && Y < other.getY()+20){
+        if(this.isClicked()&& inRange(other) && X > other.getX() && X < other.getX()+20 && Y > other.getY() && Y < other.getY()+20){
             double theta= Math.atan2(y,x);
             other.setX((int)(Math.cos(theta)*h+this.getMX()));
             other.setY((int)(Math.sin(theta)*h+this.getMY()));
