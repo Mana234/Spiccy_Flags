@@ -25,11 +25,9 @@ public class Ranger extends Unit {
 
         if(upgraded){
             critChance=20;
-            critDamage=0.5;
         }
         else{
             critChance=10;
-            critDamage=0.5;
         }
     }
 
@@ -46,9 +44,9 @@ public class Ranger extends Unit {
         if(this.isClicked()&& inRange(other) && X > other.getX() && X < other.getX()+20 && Y > other.getY() && Y < other.getY()+20){
             double crit=Math.random()*100;
             if(crit<critChance)
-                other.setH(other.getH()-(int)(other.getMH()*critDamage));
+                other.setH(other.getH()-(int)(other.getMH()*0.5));
             else
-                other.setH(other.getH()-15);
+                other.setH(other.getH()-(int)(other.getMH()*0.1));
             this.setCanAct(false);
         }
     }

@@ -114,11 +114,12 @@ public abstract class Unit{
 
     public void paint(Graphics2D g) {
         g.setColor(Color.black);
-        g.drawRect(x-1,y-11,(maxHealth/5)+1,5);
+        g.drawRect(x-1,y-11,21,5);
         g.setColor(Color.red);
-        g.fillRect(x,y-10,maxHealth/5,4);
+        g.fillRect(x,y-10,20,4);
         g.setColor(Color.green);
-        g.fillRect(x,y-10,health/5,4);
+        double percentHealth=(1.0 *health)/maxHealth;
+        g.fillRect(x,y-10,(int)(20*percentHealth),4);
 
         if (side) {
             if (isUpgraded) {

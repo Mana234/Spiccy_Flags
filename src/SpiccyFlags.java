@@ -1,5 +1,7 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.sound.sampled.*;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -13,20 +15,27 @@ public class SpiccyFlags extends JPanel{
     private boolean Turn=true;
     private Unit[] blue = new Unit[5];
     private Unit[] red = new Unit[5];
+    BufferedImage map=null;
 
     public SpiccyFlags() {
         blueBoon = 2;
         redBoon = 2;
         blue[3] = new Mage(100, 100, 500, 100, 100, 100, false, true);
         blue[1] = new Infantry(100, 100, 500, 50, 100, 150, false, true);
-        blue[2] = new Armour(100, 100, 500, 100, 100, 200, false, true);
+        blue[2] = new Armour(250, 100, 400, 50, 100, 200, false, true);
         blue[0] = new Cavalier(100, 100, 500, 100, 100, 250, false, true);
         blue[4] = new Ranger(100, 100, 500, 100, 100, 300, false, true);
         red[3] = new Mage(100, 100, 500, 100,  500, 100, false, false);
         red[1] = new Infantry(100, 100, 500, 50, 500, 150, false, false);
-        red[2] = new Armour(100, 100, 500, 100, 500, 200, false, false);
+        red[2] = new Armour(250, 100, 400, 50, 500, 200, false, false);
         red[0] = new Cavalier(100, 100, 500, 100, 500, 250, false, false);
         red[4] = new Ranger(100, 100, 500, 100,  500, 300, false, false);
+
+
+        try {
+            map= ImageIO.read(new File("res\\Map.png"));
+        } catch (IOException e) {
+        }
 
         addMouseListener(new MouseListener(){
             public void mouseExited(MouseEvent e){}
@@ -145,9 +154,7 @@ public class SpiccyFlags extends JPanel{
     {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        g2d.setColor(Color.green);
-        g2d.fillRect(0,0,1020,640);
-        g2d.setColor(Color.blue);
+        g2d.drawImage(map, 0, 0, null);
         for(int t=0; t<5; t++) {
             if (Turn)
                 red[t].showDanger(g2d);
