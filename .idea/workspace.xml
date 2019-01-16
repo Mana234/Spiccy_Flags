@@ -3,9 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="7eb1f809-bda4-42a2-b4d5-ce1165e3341a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Ranger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ranger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SpiccyFlags.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SpiccyFlags.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Unit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Unit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Armour.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Armour.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Armor.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,8 +18,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/SpiccyFlags.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="24">
-              <caret line="148" column="13" lean-forward="true" selection-start-line="148" selection-start-column="13" selection-end-line="148" selection-end-column="13" />
+            <state relative-caret-position="-333">
+              <caret line="187" column="13" lean-forward="true" selection-start-line="187" selection-start-column="13" selection-end-line="187" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -32,7 +31,7 @@
         <entry file="file://$PROJECT_DIR$/src/Unit.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="408">
-              <caret line="126" column="56" selection-start-line="126" selection-start-column="32" selection-end-line="126" selection-end-column="56" />
+              <caret line="135" column="56" selection-start-line="135" selection-start-column="32" selection-end-line="135" selection-end-column="56" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -50,6 +49,18 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="170">
               <caret line="12" column="27" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Armor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="5" column="15" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="15" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -82,11 +93,11 @@
         <option value="$PROJECT_DIR$/src/Cavalier.java" />
         <option value="$PROJECT_DIR$/src/Armor.java" />
         <option value="$PROJECT_DIR$/src/Calvalier.java" />
-        <option value="$PROJECT_DIR$/src/Armour.java" />
         <option value="$PROJECT_DIR$/src/Mage.java" />
         <option value="$PROJECT_DIR$/src/Ranger.java" />
         <option value="$PROJECT_DIR$/src/Unit.java" />
         <option value="$PROJECT_DIR$/src/SpiccyFlags.java" />
+        <option value="$PROJECT_DIR$/src/Armour.java" />
       </list>
     </option>
   </component>
@@ -107,11 +118,6 @@
             <path>
               <item name="Spiccy Flags" type="b2602c69:ProjectViewProjectNode" />
               <item name="Spiccy_Flags" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Spiccy Flags" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Spiccy_Flags" type="462c0819:PsiDirectoryNode" />
-              <item name="res" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Spiccy Flags" type="b2602c69:ProjectViewProjectNode" />
@@ -142,7 +148,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547662237762" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547662583926" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../ILU" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
@@ -262,7 +268,14 @@
       <option name="project" value="LOCAL" />
       <updated>1547574029720</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="health bars, maps, and other shtuff">
+      <created>1547662296383</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1547662296383</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -278,7 +291,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49029127" visible="true" weight="0.34832758" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49029127" visible="true" weight="0.34832758" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3995381" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -309,7 +322,8 @@
     <MESSAGE value="added notes" />
     <MESSAGE value="added health bars" />
     <MESSAGE value="Fixed abilities" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed abilities" />
+    <MESSAGE value="health bars, maps, and other shtuff" />
+    <option name="LAST_COMMIT_MESSAGE" value="health bars, maps, and other shtuff" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
@@ -339,16 +353,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="25" column="41" selection-start-line="25" selection-start-column="41" selection-end-line="25" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Armour.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="5" column="92" selection-start-line="5" selection-start-column="92" selection-end-line="5" selection-end-column="92" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -397,7 +401,17 @@
     <entry file="file://$PROJECT_DIR$/src/Unit.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
-          <caret line="126" column="56" selection-start-line="126" selection-start-column="32" selection-end-line="126" selection-end-column="56" />
+          <caret line="135" column="56" selection-start-line="135" selection-start-column="32" selection-end-line="135" selection-end-column="56" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Armor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="15" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="15" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -406,8 +420,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/SpiccyFlags.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="24">
-          <caret line="148" column="13" lean-forward="true" selection-start-line="148" selection-start-column="13" selection-end-line="148" selection-end-column="13" />
+        <state relative-caret-position="-333">
+          <caret line="187" column="13" lean-forward="true" selection-start-line="187" selection-start-column="13" selection-end-line="187" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
