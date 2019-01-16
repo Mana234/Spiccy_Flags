@@ -2,8 +2,8 @@ import javax.imageio.ImageIO;
 import java.io.*;
 
 public class Ranger extends Unit {
-    private int critChance;
-    private int critDamage;
+    private double critChance;
+    private double critDamage;
 
     public Ranger(int h, int ra, int rm, int a, int x, int y, boolean upgraded, boolean side) {
         super(h, ra, rm, a, x, y, upgraded, side);
@@ -24,18 +24,18 @@ public class Ranger extends Unit {
         }
 
         if(upgraded){
-            critChance=15;
-            critDamage=2;
+            critChance=20;
+            critDamage=0.5;
         }
         else{
             critChance=10;
-            critDamage=5;
+            critDamage=0.5;
         }
     }
 
     public boolean inRange(Unit other)
     {
-        if(Math.sqrt((Math.pow((other.getX()-10), 2)) + Math.pow((other.getY() - getY() - 10), 2)) < getRM()/2 )
+        if(Math.sqrt((Math.pow((other.getX()-this.getX()-10), 2)) + Math.pow((other.getY() - getY() - 10), 2)) < getRM()/2 )
             return true;
         else
             return false;
@@ -43,10 +43,10 @@ public class Ranger extends Unit {
 
     public void ability(int X, int Y, Unit other){
         super.ability(X,Y,other);
-        if(this.isClicked()&& !inRange(other) && X > other.getX() && X < other.getX()+20 && Y > other.getY() && Y < other.getY()+20){
+        if(this.isClicked()&& inRange(other) && X > other.getX() && X < other.getX()+20 && Y > other.getY() && Y < other.getY()+20){
             double crit=Math.random()*100;
             if(crit<critChance)
-                other.setH(other.getH()-15-(other.getMH()/critDamage));
+                other.setH(other.getH()-(int)(other.getMH()*critDamage));
             else
                 other.setH(other.getH()-15);
             this.setCanAct(false);

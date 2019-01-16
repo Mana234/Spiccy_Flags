@@ -1,4 +1,5 @@
 import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.*;
 
 public class Infantry extends Unit {
@@ -22,7 +23,7 @@ public class Infantry extends Unit {
         }
     }
 
-    public void combat(Unit other)
+    public void combatDealing(Unit other)
     {
         super.combatDealing(other);
         if (Math.sqrt((Math.pow((other.getX()-this.getX()-10), 2)) + Math.pow((other.getY() - this.getY() - 10), 2)) < this.getRA()/2 && !this.getIsDead()) {
