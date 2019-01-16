@@ -97,21 +97,30 @@ public abstract class Unit{
 
     public void ability(int X, int Y, Unit other) {}
 
+    public boolean withinRange(Unit other){
+        if (Math.sqrt((Math.pow((other.x - x - 10), 2)) + Math.pow((other.y - y - 10), 2)) < other.rangeAttack/2 && !other.isDead) return true;
+        else return false;
+    }
     public void combatDealing(Unit other){
-        if (Math.sqrt((Math.pow((other.x-x-10), 2)) + Math.pow((other.y - y - 10), 2)) < rangeAttack/2 ) {
+        if (withinRange(other)){
             other.setH(other.getH() - attackValue);
-            if (other.getH() <= 0)
+            if (other.getH() < 0)
                 other.isDead = true;
         }
     }
+
     public void combatTaking(Unit other){
-        if (Math.sqrt((Math.pow((other.x - x - 10), 2)) + Math.pow((other.y - y - 10), 2)) < other.rangeAttack/2 && !other.isDead) {
+        if (withinRange(other)) {
             health = health - other.attackValue;
-            if (health <= 0)
+            if (health < 0)
                 isDead = true;
         }
     }
 
+    public boolean armoredCheck(Unit other){
+        if (withinRange(other) && other instanceof Armor){return true;}
+        else {return false;}
+    }
     public void paint(Graphics2D g) {
         g.setColor(Color.black);
         g.drawRect(x-1,y-11,21,5);
