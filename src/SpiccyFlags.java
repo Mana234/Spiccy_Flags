@@ -19,13 +19,13 @@ public class SpiccyFlags extends JPanel{
         redBoon = 2;
         blue[3] = new Mage(100, 100, 500, 100, 100, 100, false, true);
         blue[1] = new Infantry(100, 100, 500, 50, 100, 150, false, true);
-        blue[2] = new Armor(100, 100, 500, 100, 100, 200, false, true);
-        blue[0] = new Cavalier(100, 100, 500, 100, 100, 250, false, true);
+        blue[0] = new Armor(100, 100, 500, 100, 100, 200, false, true);
+        blue[2] = new Cavalier(100, 100, 500, 100, 100, 250, false, true);
         blue[4] = new Ranger(100, 100, 500, 100, 100, 300, false, true);
         red[3] = new Mage(100, 100, 500, 100,  500, 100, false, false);
         red[1] = new Infantry(100, 100, 500, 50, 500, 150, false, false);
-        red[2] = new Armor(100, 100, 500, 100, 500, 200, false, false);
-        red[0] = new Cavalier(100, 100, 500, 100, 500, 250, false, false);
+        red[0] = new Armor(100, 100, 500, 100, 500, 200, false, false);
+        red[2] = new Cavalier(100, 100, 500, 100, 500, 250, false, false);
         red[4] = new Ranger(100, 100, 500, 100,  500, 300, false, false);
 
         addMouseListener(new MouseListener(){
@@ -37,10 +37,9 @@ public class SpiccyFlags extends JPanel{
                     blue[i].mousePressed(e.getX(), e.getY());
                     red[i].mousePressed(e.getX(), e.getY());
                 }
-
-
             }
             public void mouseReleased(MouseEvent e) {
+                int armor = -1;
                 for (int i = 3; i<=4; i++){
                     for(int t = 0; t<5; t++)
                     {
@@ -48,25 +47,62 @@ public class SpiccyFlags extends JPanel{
                         red[i].ability(e.getX(),e.getY(),blue[t]);
                     }
                 }
-                    for (int t = 0; t < 5; t++) {
+                for (int t = 0; t < 5; t++) {
+                    if (Turn) {
                         for (int i = 0; i < 5; i++) {
-                            if (Turn) {
-                                blue[i].mouseReleased(e.getX(), e.getY());
-                                blue[i].combatDealing(red[t]);
-                                blue[i].combatTaking(red[t]);
-                            } else {
-                                red[i].mouseReleased(e.getX(), e.getY());
-                                red[i].combatDealing(blue[t]);
-                                red[i].combatTaking(blue[t]);
+                            blue[i].mouseReleased(e.getX(), e.getY());
+                        }
+                        for (int i = 0; i < 5; i++){
+                            if (blue[t].armoredCheck(red[i]) == true){
+                                armor = i;
                             }
                         }
+                        if (armor < 0) {
+                            for (int i = 0; i < 5; i++)
+                                blue[t].combatDealing(red[i]);
+                        } else {
+                            int d = 0;
+                            for (int i = 0; i < 5; i++) {
+                                if (blue[t].withinRange(red[i]))
+                                    d += blue[t].getAV();
+                            }
+                            red[armor].setH(red[armor].getH() - d);
+                            if (red[armor].getH()<=0){red[armor].setDead(true);}
+                        }
+                        for (int i = 0; i < 5; i++)
+                            blue[t].combatTaking(red[i]);
+                        // ignore this, just a benchmark
+                    } else {
+                            for (int i = 0; i < 5; i++) {
+                                red[i].mouseReleased(e.getX(), e.getY());
+                            }
+                            for (int i = 0; i < 5; i++){
+                                if (red[t].armoredCheck(blue[i])){
+                                    armor = i;
+                                }
+                            }
+                            if (armor < 0) {
+                                for (int i = 0; i < 5; i++)
+                                    red[t].combatDealing(blue[i]);
+                            } else {
+                                int d = 0;
+                                for (int i = 0; i < 5; i++) {
+                                    if (red[t].withinRange(blue[i]))
+                                        d += blue[t].getAV();
+                                }
+                                blue[armor].setH(blue[armor].getH() - d);
+                                if (blue[armor].getH()<=0){blue[armor].setDead(true);}
+                            }
+                            for (int i = 0; i < 5; i++)
+                                red[t].combatTaking(blue[i]);
+                        }
                     }
-                    for (int t = 0; t < 5; t++) {
-                        if (blue[t].getIsDead())
-                            blue[t].setX(-100);
-                        if (red[t].getIsDead())
-                            red[t].setX(-100);
-                    }
+                for (int t = 0; t < 5; t++) {
+                    if (blue[t].getIsDead())
+                        blue[t].setX(-100);
+                    if (red[t].getIsDead())
+                        red[t].setX(-100);
+                }
                 }
         });
         addMouseMotionListener(new MouseMotionListener() {
