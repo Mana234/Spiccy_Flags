@@ -15,7 +15,11 @@ public class SpiccyFlags extends JPanel{
     private boolean Turn=true;
     private Unit[] blue = new Unit[5];
     private Unit[] red = new Unit[5];
+    private Menu Menu= new Menu();
     BufferedImage map=null;
+
+    private enum STATE{Menu, Game, StartUp}
+    public static STATE State = STATE.Menu;
 
     public SpiccyFlags() {
         blueBoon = 2;
@@ -25,11 +29,11 @@ public class SpiccyFlags extends JPanel{
         blue[0] = new Armor(100, 100, 500, 100, 100, 200, false, true);
         blue[2] = new Cavalier(100, 100, 500, 100, 100, 250, false, true);
         blue[4] = new Ranger(100, 100, 500, 100, 100, 300, false, true);
-        red[3] = new Mage(100, 100, 500, 100,  500, 100, false, false);
-        red[1] = new Infantry(100, 100, 500, 50, 500, 150, false, false);
-        red[0] = new Armor(100, 100, 500, 100, 500, 200, false, false);
-        red[2] = new Cavalier(100, 100, 500, 100, 500, 250, false, false);
-        red[4] = new Ranger(100, 100, 500, 100,  500, 300, false, false);
+        red[3] = new Mage(100, 100, 500, 100,  900, 100, false, false);
+        red[1] = new Infantry(100, 100, 500, 50, 900, 150, false, false);
+        red[0] = new Armor(100, 100, 500, 100, 900, 200, false, false);
+        red[2] = new Cavalier(100, 100, 500, 100, 900, 250, false, false);
+        red[4] = new Ranger(100, 100, 500, 100,  900, 300, false, false);
 
 
         try {
@@ -41,13 +45,20 @@ public class SpiccyFlags extends JPanel{
             public void mouseExited(MouseEvent e){}
             public void mouseClicked(MouseEvent e){}
             public void mouseEntered(MouseEvent e){}
-            public void mousePressed(MouseEvent e){
-                for (int i = 0; i<5; i++){
-                    blue[i].mousePressed(e.getX(), e.getY());
-                    red[i].mousePressed(e.getX(), e.getY());
+            public void mousePressed(MouseEvent e) {
+                if (State == STATE.Game) {
+                    for (int i = 0; i < 5; i++) {
+                        blue[i].mousePressed(e.getX(), e.getY());
+                        red[i].mousePressed(e.getX(), e.getY());
+                    }
                 }
             }
+
             public void mouseReleased(MouseEvent e) {
+                if(State==STATE.Menu)
+                {
+                    Menu.mouseReleased(e.getX(),e.getY());
+                }
                 int armor = -1;
                 for (int i = 3; i<=4; i++){
                     for(int t = 0; t<5; t++)
@@ -62,7 +73,7 @@ public class SpiccyFlags extends JPanel{
                             blue[i].mouseReleased(e.getX(), e.getY());
                         }
                         for (int i = 0; i < 5; i++){
-                            if (blue[t].armoredCheck(red[i]) == true){
+                            if (blue[t].armoredCheck(red[i])){
                                 armor = i;
                             }
                         }
@@ -194,6 +205,7 @@ public class SpiccyFlags extends JPanel{
         Graphics2D g2d = (Graphics2D) g;
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2d.drawImage(map, 0, 0, null);
+        Menu.paint(g2d);
         for(int t=0; t<5; t++) {
             if (Turn)
                 red[t].showDanger(g2d);
