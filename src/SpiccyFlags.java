@@ -20,16 +20,16 @@ public class SpiccyFlags extends JPanel{
     public SpiccyFlags() {
         blueBoon = 2;
         redBoon = 2;
-        blue[3] = new Mage(100, 100, 500, 100, 100, 100, false, true);
-        blue[1] = new Infantry(100, 100, 500, 50, 100, 150, false, true);
-        blue[0] = new Armor(100, 100, 500, 100, 100, 200, false, true);
-        blue[2] = new Cavalier(100, 100, 500, 100, 100, 250, false, true);
-        blue[4] = new Ranger(100, 100, 500, 100, 100, 300, false, true);
-        red[3] = new Mage(100, 100, 500, 100,  500, 100, false, false);
-        red[1] = new Infantry(100, 100, 500, 50, 500, 150, false, false);
-        red[0] = new Armor(100, 100, 500, 100, 500, 200, false, false);
-        red[2] = new Cavalier(100, 100, 500, 100, 500, 250, false, false);
-        red[4] = new Ranger(100, 100, 500, 100,  500, 300, false, false);
+        blue[3] = new Mage(300, 100, 500, 50, 100, 100, false, true);
+        blue[1] = new Infantry(300, 100, 500, 100, 100, 150, false, true);
+        blue[0] = new Armor(1000, 100, 500, 50, 100, 200, false, true);
+        blue[2] = new Cavalier(300, 100, 500, 100, 100, 250, false, true);
+        blue[4] = new Ranger(300, 100, 500, 100, 100, 300, false, true);
+        red[3] = new Mage(300, 100, 500, 50,  900, 100, false, false);
+        red[1] = new Infantry(300, 100, 500, 100, 900, 150, false, false);
+        red[0] = new Armor(300, 100, 500, 50, 900, 200, false, false);
+        red[2] = new Cavalier(300, 100, 500, 100, 900, 250, false, false);
+        red[4] = new Ranger(300, 100, 500, 100,  900, 300, false, false);
 
 
         try {
@@ -58,9 +58,6 @@ public class SpiccyFlags extends JPanel{
                 }
                 for (int t = 0; t < 5; t++) {
                     if (Turn) {
-                        for (int i = 0; i < 5; i++) {
-                            blue[i].mouseReleased(e.getX(), e.getY());
-                        }
                         for (int i = 0; i < 5; i++){
                             if (blue[t].armoredCheck(red[i]) == true){
                                 armor = i;
@@ -80,11 +77,11 @@ public class SpiccyFlags extends JPanel{
                         }
                         for (int i = 0; i < 5; i++)
                             blue[t].combatTaking(red[i]);
+                        for (int i = 0; i < 5; i++)
+                            blue[i].mouseReleased(e.getX(), e.getY());
+
                         // ignore this, just a benchmark
                     } else {
-                            for (int i = 0; i < 5; i++) {
-                                red[i].mouseReleased(e.getX(), e.getY());
-                            }
                             for (int i = 0; i < 5; i++){
                                 if (red[t].armoredCheck(blue[i])){
                                     armor = i;
@@ -104,6 +101,8 @@ public class SpiccyFlags extends JPanel{
                             }
                             for (int i = 0; i < 5; i++)
                                 red[t].combatTaking(blue[i]);
+                        for (int i = 0; i < 5; i++)
+                            red[i].mouseReleased(e.getX(), e.getY());
                         }
                     }
                 for (int t = 0; t < 5; t++) {
@@ -112,12 +111,13 @@ public class SpiccyFlags extends JPanel{
                     if (red[t].getIsDead())
                         red[t].setX(-100);
                 }
-                }
+            }
         });
         addMouseMotionListener(new MouseMotionListener() {
             public void mouseDragged(MouseEvent e) {
                 for (int i = 0; i<blue.length; i++){blue[i].mouseDragged(e.getX(), e.getY());}
                 for (int i = 0; i<red.length; i++){red[i].mouseDragged(e.getX(), e.getY());}
+
             }
 
             public void mouseMoved(MouseEvent e) {
