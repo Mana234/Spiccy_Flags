@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
 public abstract class Unit{
     //Blue team is the true team!
     private int health,maxHealth, rangeAttack, rangeMovement, attackValue,x, y, mx, my;
-    private boolean isUpgraded, side, isClicked, canAct, isDead, toggle, highlight;
+    private boolean isUpgraded, side, isClicked, canAct, isDead, toggle, highlight, display;
     BufferedImage red, redUsed, redUp, redUpUsed, blue, blueUsed, blueUp, blueUpUsed;
 
     public Unit(int h, int ra, int rm, int a, int x, int y, boolean upgraded, boolean side)
@@ -48,12 +48,18 @@ public abstract class Unit{
     public boolean getAct(){return canAct;}
     public boolean getIsDead(){return isDead;}
     public boolean isClicked(){return isClicked;}
+    public boolean isUpgraded(){return isUpgraded;}
 
     public void setH(int h){health = h;}
     public void setX(int X){x=X;}
     public void setY(int Y){y=Y;}
     public void setCanAct(boolean act){canAct=act;}
     public void setDead(boolean dead){isDead=dead;}
+
+    public void mouseEntered(int X, int Y){
+        display = X > x && X < x + 20 && Y > y && Y < y + 20;
+    }
+
     public void mousePressed(int X, int Y){
         if (X > x && X < x+20 && Y > y && Y < y+20 && canAct)
             isClicked = true; mx = x; my = y;
@@ -64,6 +70,7 @@ public abstract class Unit{
             highlight=true;
 
     }
+
     public void mouseDragged(int X, int Y){
         if(isClicked)
         {
@@ -84,6 +91,11 @@ public abstract class Unit{
         isClicked = false;
     }
 
+    public void upgrade(int X, int Y){
+        if (X > x && X < x+20 && Y > y && Y < y+20)
+            isUpgraded=true;
+    }
+
     public void keyReleased(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_SPACE&&toggle)
         {
@@ -98,9 +110,9 @@ public abstract class Unit{
     public void ability(int X, int Y, Unit other) {}
 
     public boolean withinRange(Unit other){
-        if (Math.sqrt((Math.pow((other.x - x - 10), 2)) + Math.pow((other.y - y - 10), 2)) < other.rangeAttack/2 && !other.isDead) return true;
-        else return false;
+        return Math.sqrt((Math.pow((other.x - x - 10), 2)) + Math.pow((other.y - y - 10), 2)) < other.rangeAttack / 2 && !other.isDead;
     }
+
     public void combatDealing(Unit other){
         if (withinRange(other)){
             other.setH(other.getH() - attackValue);
@@ -137,9 +149,8 @@ public abstract class Unit{
                 else
                     g.drawImage(blueUpUsed, x, y,20, 20, null);
             }
-
             else {
-                if (getAct())
+                if (canAct)
                     g.drawImage(blue, x, y,20,20, null);
                 else
                     g.drawImage(blueUsed, x, y,20,20, null);
@@ -154,7 +165,7 @@ public abstract class Unit{
                     g.drawImage(redUpUsed, x, y,20,20, null);
             }
             else {
-                if (getAct())
+                if (canAct||SpiccyFlags.State== SpiccyFlags.STATE.Menu||SpiccyFlags.State==SpiccyFlags.STATE.StartUp)
                     g.drawImage(red, x, y,20,20, null);
                 else
                     g.drawImage(redUsed, x, y,20,20, null);
@@ -166,6 +177,16 @@ public abstract class Unit{
             g.drawOval(x - (rangeAttack / 2 - 10), y - (rangeAttack / 2 - 10), rangeAttack, rangeAttack);
             g.drawOval(mx - (rangeMovement / 2 - 10), my - (rangeMovement / 2 - 10), rangeMovement, rangeMovement);
         }
+    }
+
+    public void unitDisplay(Graphics2D g){
+        Color c= new Color(102,51,0);
+        g.setColor(c);
+        g.fillRect(250,0,500,100);
+        if(display&&!side)
+            g.drawImage(red,660,10, 90,90,null);
+        else if(display)
+            g.drawImage(blue,260,10,90,90,null);
     }
 
     public void showDanger(Graphics2D g)

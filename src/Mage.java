@@ -11,15 +11,15 @@ public class Mage extends Unit {
         try {
             blue = ImageIO.read(new File("res\\mageBlue.png"));
             blueUsed = ImageIO.read(new File("res\\mageBlueUsed.png"));
-            blueUp = ImageIO.read(new File("res\\mageBlueUpgraded.png"));
-            blueUpUsed = ImageIO.read(new File("res\\mageBlueUpgradedUsed.png"));
+            blueUp = ImageIO.read(new File("res\\mageBlueUpgrade.png"));
+            blueUpUsed = ImageIO.read(new File("res\\mageBlueUpgradeUsed.png"));
         } catch (IOException e) {
         }
         try{
             red = ImageIO.read(new File("res\\mageRed.png"));
             redUsed = ImageIO.read(new File("res\\mageRedUsed.png"));
-            redUp = ImageIO.read(new File("res\\mageRedUpgraded.png"));
-            redUpUsed = ImageIO.read(new File("res\\mageRedUpgradedUsed.png"));
+            redUp = ImageIO.read(new File("res\\mageRedUpgrade.png"));
+            redUpUsed = ImageIO.read(new File("res\\mageRedUpgradeUsed.png"));
         } catch (IOException e) {
         }
     }

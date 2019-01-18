@@ -10,15 +10,15 @@ public class Infantry extends Unit {
         try {
             blue = ImageIO.read(new File("res\\infantryBlue.png"));
             blueUsed = ImageIO.read(new File("res\\infantryBlueUsed.png"));
-            blueUp = ImageIO.read(new File("res\\infantryBlueUpgraded.png"));
-            blueUpUsed = ImageIO.read(new File("res\\infantryBlueUpgradedUsed.png"));
+            blueUp = ImageIO.read(new File("res\\infantryBlueUpgrade.png"));
+            blueUpUsed = ImageIO.read(new File("res\\infantryBlueUpgradeUsed.png"));
         } catch (IOException e) {
         }
         try{
             red = ImageIO.read(new File("res\\infantryRed.png"));
             redUsed = ImageIO.read(new File("res\\infantryRedUsed.png"));
-            redUp = ImageIO.read(new File("res\\infantryRedUpgraded.png"));
-            redUpUsed = ImageIO.read(new File("res\\infantryRedUpgradedUsed.png"));
+            redUp = ImageIO.read(new File("res\\infantryRedUpgrade.png"));
+            redUpUsed = ImageIO.read(new File("res\\infantryRedUpgradeUsed.png"));
         } catch (IOException e) {
         }
     }
