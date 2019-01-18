@@ -10,18 +10,20 @@ public class Cavalier extends Unit {
         try {
             blue = ImageIO.read(new File("res\\cavalryBlue.png"));
             blueUsed = ImageIO.read(new File("res\\cavalryBlueUsed.png"));
-            blueUp = ImageIO.read(new File("res\\cavalryBlueUpgraded.png"));
-            blueUpUsed = ImageIO.read(new File("res\\cavalryBlueUpgradedUsed.png"));
+            blueUp = ImageIO.read(new File("res\\cavalryBlueUpgrade.png"));
+            blueUpUsed = ImageIO.read(new File("res\\cavalryBlueUpgradedUse.png"));
         } catch (IOException e) {
         }
         try{
             red = ImageIO.read(new File("res\\cavalryRed.png"));
             redUsed = ImageIO.read(new File("res\\cavalryRedUsed.png"));
-            redUp = ImageIO.read(new File("res\\cavalryRedUpgraded.png"));
-            redUpUsed = ImageIO.read(new File("res\\cavalryRedUpgradedUsed.png"));
+            redUp = ImageIO.read(new File("res\\cavalryRedUpgrade.png"));
+            redUpUsed = ImageIO.read(new File("res\\cavalryRedUpgradeUsed.png"));
         } catch (IOException e) {
         }
     }
+
+
 
     public void combatDealing(Unit other){
         super.combatDealing(other);

@@ -11,15 +11,15 @@ public class Ranger extends Unit {
         try {
             blue = ImageIO.read(new File("res\\rangerBlue.png"));
             blueUsed = ImageIO.read(new File("res\\rangerBlueUsed.png"));
-            blueUp = ImageIO.read(new File("res\\rangerBlueUpgraded.png"));
-            blueUpUsed = ImageIO.read(new File("res\\rangerBlueUpgradedUsed.png"));
+            blueUp = ImageIO.read(new File("res\\rangerBlueUpgrade.png"));
+            blueUpUsed = ImageIO.read(new File("res\\rangerBlueUpgradeUsed.png"));
         } catch (IOException e) {
         }
         try{
             red = ImageIO.read(new File("res\\rangerRed.png"));
             redUsed = ImageIO.read(new File("res\\rangerRedUsed.png"));
-            redUp = ImageIO.read(new File("res\\rangerRedUpgraded.png"));
-            redUpUsed = ImageIO.read(new File("res\\rangerRedUpgradedUsed.png"));
+            redUp = ImageIO.read(new File("res\\rangeRedUpgrade.png"));
+            redUpUsed = ImageIO.read(new File("res\\rangerRedUpgradeUsed.png"));
         } catch (IOException e) {
         }
 

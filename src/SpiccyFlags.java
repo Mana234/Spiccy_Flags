@@ -11,19 +11,17 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class SpiccyFlags extends JPanel{
-    private int blueBoon, redBoon;
     private boolean Turn=true;
     private Unit[] blue = new Unit[5];
     private Unit[] red = new Unit[5];
     private Menu Menu= new Menu();
     BufferedImage map=null;
 
-    private enum STATE{Menu, Game, StartUp}
+    public enum STATE{Menu, Game, StartUp, BlueWin, RedWin}
     public static STATE State = STATE.Menu;
 
     public SpiccyFlags() {
-        blueBoon = 2;
-        redBoon = 2;
+
         blue[3] = new Mage(100, 100, 500, 100, 100, 100, false, true);
         blue[1] = new Infantry(100, 100, 500, 50, 100, 150, false, true);
         blue[0] = new Armor(100, 100, 500, 100, 100, 200, false, true);
@@ -44,7 +42,10 @@ public class SpiccyFlags extends JPanel{
         addMouseListener(new MouseListener(){
             public void mouseExited(MouseEvent e){}
             public void mouseClicked(MouseEvent e){}
-            public void mouseEntered(MouseEvent e){}
+            public void mouseEntered(MouseEvent e){
+
+            }
+
             public void mousePressed(MouseEvent e) {
                 if (State == STATE.Game) {
                     for (int i = 0; i < 5; i++) {
@@ -59,6 +60,16 @@ public class SpiccyFlags extends JPanel{
                 {
                     Menu.mouseReleased(e.getX(),e.getY());
                 }
+
+                if(State==STATE.StartUp)
+                {
+                    for(int t = 0; t<5; t++)
+                    {
+                        blue[t].upgrade(e.getX(),e.getY());
+                        red[t].upgrade(e.getX(),e.getY());
+                    }
+                }
+
                 int armor = -1;
                 for (int i = 3; i<=4; i++){
                     for(int t = 0; t<5; t++)
@@ -132,7 +143,10 @@ public class SpiccyFlags extends JPanel{
             }
 
             public void mouseMoved(MouseEvent e) {
-
+                for (int i = 0; i < 5; i++) {
+                    blue[i].mouseEntered(e.getX(), e.getY());
+                    red[i].mouseEntered(e.getX(), e.getY());
+                }
             }
         });
         addKeyListener(new KeyListener() {
@@ -167,6 +181,22 @@ public class SpiccyFlags extends JPanel{
 
     public void changeTurn()
     {
+        if(State==STATE.StartUp){
+            int blueBoon=0, redBoon=0;
+            for(int t=0;t<5;t++)
+            {
+                if(blue[t].isUpgraded()) {
+                    blueBoon++;
+                }
+                if(red[t].isUpgraded()) {
+                    redBoon++;
+                }
+                if(redBoon==2 && blueBoon==2){
+                    State=STATE.Game;
+                }
+            }
+        }
+
         int unitsActed=0;
         for(int t=0;t<5;t++)
         {
@@ -198,6 +228,23 @@ public class SpiccyFlags extends JPanel{
                 }
             }
         }
+
+        int blueDead=0;
+        int redDead=0;
+        for(int t=0;t<5;t++)
+        {
+            if(blue[t].getIsDead()) {
+                blueDead++;
+            }
+            if(red[t].getIsDead()) {
+                redDead++;
+            }
+            if(blueDead==5)
+                State=STATE.RedWin;
+            if(redDead==5)
+                State=STATE.BlueWin;
+
+        }
     }
 
     public void paint(Graphics g)
@@ -205,12 +252,23 @@ public class SpiccyFlags extends JPanel{
         Graphics2D g2d = (Graphics2D) g;
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2d.drawImage(map, 0, 0, null);
-        Menu.paint(g2d);
-        for(int t=0; t<5; t++) {
-            if (Turn)
-                red[t].showDanger(g2d);
-            else
-                blue[t].showDanger(g2d);
+        if(State!=STATE.Game ||State!=STATE.StartUp)
+            Menu.paint(g2d);
+
+        if(State==STATE.Game) {
+            for (int t = 0; t < 5; t++) {
+                if (Turn)
+                    red[t].showDanger(g2d);
+                else
+                    blue[t].showDanger(g2d);
+            }
+        }
+
+        if(State==STATE.Game ||State==STATE.StartUp){
+            for (int t = 0; t < 5; t++) {
+                red[t].unitDisplay(g2d);
+                blue[t].unitDisplay(g2d);
+            }
         }
 
         for(int t=0; t<5; t++)
