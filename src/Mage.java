@@ -1,6 +1,4 @@
 import javax.imageio.ImageIO;
-//import java.awt.*;
-//import java.awt.image.BufferedImage;
 import java.io.*;
 
 public class Mage extends Unit {
@@ -46,4 +44,5 @@ public class Mage extends Unit {
             this.setCanAct(false);
         }
     }
+
 }

@@ -3,7 +3,6 @@ import java.io.*;
 
 public class Ranger extends Unit {
     private double critChance;
-    private double critDamage;
 
     public Ranger(int h, int ra, int rm, int a, int x, int y, boolean upgraded, boolean side) {
         super(h, ra, rm, a, x, y, upgraded, side);

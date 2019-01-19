@@ -1,53 +1,106 @@
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.sound.sampled.*;
+import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 public class SpiccyFlags extends JPanel{
-    private int blueBoon, redBoon;
     private boolean Turn=true;
     private Unit[] blue = new Unit[5];
     private Unit[] red = new Unit[5];
-    BufferedImage map=null;
+    private Menu Menu= new Menu();
+    BufferedImage map,nextTurn=null;
+
+    public enum STATE{Menu, Game, StartUp, BlueWin, RedWin}
+    public static STATE State = STATE.Menu;
 
     public SpiccyFlags() {
-        blueBoon = 2;
-        redBoon = 2;
-        blue[3] = new Mage(300, 100, 500, 50, 100, 100, false, true);
-        blue[1] = new Infantry(300, 100, 500, 100, 100, 150, false, true);
-        blue[0] = new Armor(1000, 100, 500, 50, 100, 200, false, true);
-        blue[2] = new Cavalier(300, 100, 500, 100, 100, 250, false, true);
-        blue[4] = new Ranger(300, 100, 500, 100, 100, 300, false, true);
-        red[3] = new Mage(300, 100, 500, 50,  900, 100, false, false);
-        red[1] = new Infantry(300, 100, 500, 100, 900, 150, false, false);
-        red[0] = new Armor(300, 100, 500, 50, 900, 200, false, false);
-        red[2] = new Cavalier(300, 100, 500, 100, 900, 250, false, false);
-        red[4] = new Ranger(300, 100, 500, 100,  900, 300, false, false);
+
+        blue[3] = new Mage(75, 100, 400, 15, 100, 150, false, true);
+        blue[1] = new Infantry(100, 100, 500, 20, 100, 220, false, true);
+        blue[0] = new Armor(150, 100, 375, 20, 100, 290, false, true);
+        blue[2] = new Cavalier(100, 100, 550, 20, 100, 360, false, true);
+        blue[4] = new Ranger(75, 100, 400, 15, 100, 430, false, true);
+        red[3] = new Mage(75, 100, 400, 15,  880, 150, false, false);
+        red[1] = new Infantry(100, 100, 500, 20, 880, 220, false, false);
+        red[0] = new Armor(150, 100, 375, 20, 880, 290, false, false);
+        red[2] = new Cavalier(100, 100, 550, 20, 880, 360, false, false);
+        red[4] = new Ranger(75, 100, 400, 15,  880, 430, false, false);
 
 
         try {
             map= ImageIO.read(new File("res\\Map.png"));
+            nextTurn= ImageIO.read(new File("res\\NextTurnButton.png"));
         } catch (IOException e) {
         }
 
+
         addMouseListener(new MouseListener(){
             public void mouseExited(MouseEvent e){}
-            public void mouseClicked(MouseEvent e){}
-            public void mouseEntered(MouseEvent e){}
-            public void mousePressed(MouseEvent e){
-                for (int i = 0; i<5; i++){
-                    blue[i].mousePressed(e.getX(), e.getY());
-                    red[i].mousePressed(e.getX(), e.getY());
+            public void mouseClicked(MouseEvent e){
+
+            }
+            public void mouseEntered(MouseEvent e){
+
+            }
+
+            public void mousePressed(MouseEvent e) {
+                if (State == STATE.Game) {
+                    for (int i = 0; i < 5; i++) {
+                        blue[i].mousePressed(e.getX(), e.getY());
+                        red[i].mousePressed(e.getX(), e.getY());
+                    }
+                    if(e.getX() > 430 && e.getX() < 590 && e.getY() > 60 && e.getY() < 100) {
+                        if(Turn)
+                        {
+                            for(int i=0; i<5; i++) {
+                                red[i].setCanAct(true);
+                                blue[i].setCanAct(false);
+                            }
+                            Turn=false;
+                        }
+                        else
+                        {
+                            for(int i= 0; i<5; i++) {
+                                blue[i].setCanAct(true);
+                                red[i].setCanAct(false);
+                            }
+                            Turn=true;
+                        }
+                    }
+
                 }
             }
+
             public void mouseReleased(MouseEvent e) {
+                if(State==STATE.Menu)
+                {
+                    Menu.mouseReleased(e.getX(),e.getY());
+                }
+
+                if(State==STATE.StartUp)
+                {
+                    for(int t = 0; t<5; t++)
+                    {
+                        int blueBoon=0, redBoon=0;
+                        for(int i=0;i<5;i++)
+                        {
+                            if(blue[i].isUpgraded()) {
+                                blueBoon++;
+                            }
+                            if(red[i].isUpgraded()) {
+                                redBoon++;
+                            }
+                        }
+                        if(blueBoon!=2)
+                            blue[t].upgrade(e.getX(),e.getY());
+                        if(redBoon!=2)
+                            red[t].upgrade(e.getX(),e.getY());
+                    }
+                }
+
                 int armor = -1;
                 for (int i = 3; i<=4; i++){
                     for(int t = 0; t<5; t++)
@@ -58,8 +111,11 @@ public class SpiccyFlags extends JPanel{
                 }
                 for (int t = 0; t < 5; t++) {
                     if (Turn) {
+                        for (int i = 0; i < 5; i++) {
+                            blue[i].mouseReleased(e.getX(), e.getY());
+                        }
                         for (int i = 0; i < 5; i++){
-                            if (blue[t].armoredCheck(red[i]) == true){
+                            if (blue[t].armoredCheck(red[i])){
                                 armor = i;
                             }
                         }
@@ -77,11 +133,11 @@ public class SpiccyFlags extends JPanel{
                         }
                         for (int i = 0; i < 5; i++)
                             blue[t].combatTaking(red[i]);
-                        for (int i = 0; i < 5; i++)
-                            blue[i].mouseReleased(e.getX(), e.getY());
-
                         // ignore this, just a benchmark
                     } else {
+                            for (int i = 0; i < 5; i++) {
+                                red[i].mouseReleased(e.getX(), e.getY());
+                            }
                             for (int i = 0; i < 5; i++){
                                 if (red[t].armoredCheck(blue[i])){
                                     armor = i;
@@ -101,8 +157,6 @@ public class SpiccyFlags extends JPanel{
                             }
                             for (int i = 0; i < 5; i++)
                                 red[t].combatTaking(blue[i]);
-                        for (int i = 0; i < 5; i++)
-                            red[i].mouseReleased(e.getX(), e.getY());
                         }
                     }
                 for (int t = 0; t < 5; t++) {
@@ -111,19 +165,9 @@ public class SpiccyFlags extends JPanel{
                     if (red[t].getIsDead())
                         red[t].setX(-100);
                 }
-            }
+                }
         });
-        addMouseMotionListener(new MouseMotionListener() {
-            public void mouseDragged(MouseEvent e) {
-                for (int i = 0; i<blue.length; i++){blue[i].mouseDragged(e.getX(), e.getY());}
-                for (int i = 0; i<red.length; i++){red[i].mouseDragged(e.getX(), e.getY());}
 
-            }
-
-            public void mouseMoved(MouseEvent e) {
-
-            }
-        });
         addKeyListener(new KeyListener() {
             public void keyTyped(KeyEvent e) {
             }
@@ -138,6 +182,23 @@ public class SpiccyFlags extends JPanel{
             }
         });
         setFocusable(true);
+        addMouseMotionListener(new MouseMotionListener() {
+            public void mouseDragged(MouseEvent e) {
+                for (int i = 0; i<blue.length; i++){blue[i].mouseDragged(e.getX(), e.getY());}
+                for (int i = 0; i<red.length; i++){red[i].mouseDragged(e.getX(), e.getY());}
+                for (int i = 0; i < 5; i++) {
+                    blue[i].mouseEntered(e.getX(), e.getY());
+                    red[i].mouseEntered(e.getX(), e.getY());
+                }
+            }
+
+            public void mouseMoved(MouseEvent e) {
+                for (int i = 0; i < 5; i++) {
+                blue[i].mouseEntered(e.getX(), e.getY());
+                red[i].mouseEntered(e.getX(), e.getY());
+                }
+            }
+        });
         try {
             File titleTheme = new File("res\\Trap Knight.wav");
             AudioInputStream audioIn = AudioSystem.getAudioInputStream(titleTheme);
@@ -156,6 +217,22 @@ public class SpiccyFlags extends JPanel{
 
     public void changeTurn()
     {
+        if(State==STATE.StartUp){
+            int blueBoon=0, redBoon=0;
+            for(int t=0;t<5;t++)
+            {
+                if(blue[t].isUpgraded()) {
+                    blueBoon++;
+                }
+                if(red[t].isUpgraded()) {
+                    redBoon++;
+                }
+                if(redBoon==2 && blueBoon==2){
+                    State=STATE.Game;
+                }
+            }
+        }
+
         int unitsActed=0;
         for(int t=0;t<5;t++)
         {
@@ -187,6 +264,23 @@ public class SpiccyFlags extends JPanel{
                 }
             }
         }
+
+        int blueDead=0;
+        int redDead=0;
+        for(int t=0;t<5;t++)
+        {
+            if(blue[t].getIsDead()) {
+                blueDead++;
+            }
+            if(red[t].getIsDead()) {
+                redDead++;
+            }
+            if(blueDead==5)
+                State=STATE.RedWin;
+            if(redDead==5)
+                State=STATE.BlueWin;
+
+        }
     }
 
     public void paint(Graphics g)
@@ -194,11 +288,76 @@ public class SpiccyFlags extends JPanel{
         Graphics2D g2d = (Graphics2D) g;
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2d.drawImage(map, 0, 0, null);
-        for(int t=0; t<5; t++) {
-            if (Turn)
-                red[t].showDanger(g2d);
+        if(State!=STATE.Game ||State!=STATE.StartUp)
+            Menu.paint(g2d);
+
+        if(State==STATE.Game) {
+            for (int t = 0; t < 5; t++) {
+                if (Turn)
+                    red[t].showDanger(g2d);
+                else
+                    blue[t].showDanger(g2d);
+            }
+        }
+
+        if(State==STATE.StartUp)
+        {
+            Color c= new Color(102,51,0);
+            Font fnt=new Font("Serif",Font.BOLD, 30);
+            g.setFont(fnt);
+            g.setColor(c);
+            g.fillRect(235,235,220,60);
+            g.fillRect(575,235,210,60);
+            g.setColor(Color.cyan);
+            g.drawString("# of Blue Boons:",240,260);
+            g.setColor(Color.red);
+            g.drawString("# of Red Boons:",580,260);
+            for(int t = 0; t<5; t++)
+            {
+                int blueBoon=2, redBoon=2;
+                for(int i=0;i<5;i++)
+                {
+                    if(blue[i].isUpgraded()) {
+                        blueBoon--;
+                    }
+                    if(red[i].isUpgraded()) {
+                        redBoon--;
+                    }
+                }
+
+                g.setColor(Color.cyan);
+                g.drawString(Integer.toString(blueBoon),240,290);
+                g.setColor(Color.red);
+                g.drawString(Integer.toString(redBoon),580,290);
+            }
+        }
+
+        if(State==STATE.Game ||State==STATE.StartUp){
+            Color c= new Color(102,51,0);
+            g.setColor(c);
+            g.fillRect(260,0,500,100);
+            if(State==STATE.StartUp)
+                g.setColor(Color.gray);
+            else if(!Turn)
+                g.setColor(Color.RED);
             else
-                blue[t].showDanger(g2d);
+                g.setColor(Color.BLUE);
+            g.fillRect(485,0,50,50);
+            Font fnt=new Font("Serif",Font.BOLD, 15);
+            g.setFont(fnt);
+            g.setColor(Color.white);
+            g.drawString("HP:",545,15);
+            g.drawString("HP:",360,15);
+            g.drawString("ATK:",545,35);
+            g.drawString("ATK:",360,35);
+            g.drawString("SPD:",545,55);
+            g.drawString("SPD:",360,55);
+            g.drawImage(nextTurn,430,60,160,40,null);
+            for (int t = 0; t < 5; t++) {
+                blue[t].unitDisplay(g2d);
+                red[t].unitDisplay(g2d);
+            }
+
         }
 
         for(int t=0; t<5; t++)

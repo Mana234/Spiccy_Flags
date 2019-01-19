@@ -36,6 +36,8 @@ public abstract class Unit{
         redUsed=null;
     }
 
+
+
     public int getX(){return x;}
     public int getY(){return y;}
     public int getMX() {return mx;}
@@ -51,13 +53,20 @@ public abstract class Unit{
     public boolean isUpgraded(){return isUpgraded;}
 
     public void setH(int h){health = h;}
+    public void setAV(int av){attackValue=av;}
+    public void setRM(int rm){rangeMovement=rm;}
+    public void setMH(int mh){maxHealth=mh;}
     public void setX(int X){x=X;}
     public void setY(int Y){y=Y;}
     public void setCanAct(boolean act){canAct=act;}
     public void setDead(boolean dead){isDead=dead;}
 
+
     public void mouseEntered(int X, int Y){
-        display = X > x && X < x + 20 && Y > y && Y < y + 20;
+        if(X > x && X < x+20 && Y > y && Y < y+20 )
+            display=true;
+        else
+            display=false;
     }
 
     public void mousePressed(int X, int Y){
@@ -159,7 +168,7 @@ public abstract class Unit{
 
         if (!side) {
             if (isUpgraded) {
-                if (canAct)
+                if (canAct||SpiccyFlags.State== SpiccyFlags.STATE.Menu||SpiccyFlags.State==SpiccyFlags.STATE.StartUp)
                     g.drawImage(redUp, x, y,20,20, null);
                 else
                     g.drawImage(redUpUsed, x, y,20,20, null);
@@ -171,8 +180,7 @@ public abstract class Unit{
                     g.drawImage(redUsed, x, y,20,20, null);
             }
         }
-
-        if (this.isClicked()) {
+        if (isClicked) {
             g.setColor(Color.black);
             g.drawOval(x - (rangeAttack / 2 - 10), y - (rangeAttack / 2 - 10), rangeAttack, rangeAttack);
             g.drawOval(mx - (rangeMovement / 2 - 10), my - (rangeMovement / 2 - 10), rangeMovement, rangeMovement);
@@ -180,17 +188,37 @@ public abstract class Unit{
     }
 
     public void unitDisplay(Graphics2D g){
-        Color c= new Color(102,51,0);
-        g.setColor(c);
-        g.fillRect(250,0,500,100);
-        if(display&&!side)
-            g.drawImage(red,660,10, 90,90,null);
-        else if(display)
-            g.drawImage(blue,260,10,90,90,null);
+
+        g.setColor(Color.white);
+        if(display) {
+            if (!side) {
+                g.drawString(health+"/"+maxHealth,570,15);
+                g.drawString(" "+ attackValue,580,35);
+                g.drawString(" "+ rangeMovement,580,55);
+                if (isUpgraded)
+                    g.drawImage(redUp, 665, 5, 90, 90, null);
+                else
+                    g.drawImage(red, 665, 5, 90, 90, null);
+            }
+            else {
+                g.drawString(health+"/"+maxHealth,385,15);
+                g.drawString(" "+ attackValue,395,35);
+                g.drawString(" "+ rangeMovement,395,55);
+                if (isUpgraded)
+                    g.drawImage(blueUp, 265, 5, 90, 90, null);
+                else
+                    g.drawImage(blue, 265, 5, 90, 90, null);
+            }
+        }
     }
 
     public void showDanger(Graphics2D g)
     {
+        if (display) {
+            g.setColor(Color.black);
+            g.drawOval(x - (rangeAttack / 2 - 10), y - (rangeAttack / 2 - 10), rangeAttack, rangeAttack);
+            g.drawOval(mx - (rangeMovement / 2 - 10), my - (rangeMovement / 2 - 10), rangeMovement, rangeMovement);
+        }
         if(highlight){
             g.setColor(Color.red);
             g.fillOval(x-((rangeAttack+rangeMovement)/2-10),y-((rangeAttack+rangeMovement)/2-10),rangeAttack+rangeMovement,rangeAttack+rangeMovement);

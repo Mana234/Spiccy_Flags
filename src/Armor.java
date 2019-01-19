@@ -21,4 +21,13 @@ public class Armor extends Unit{
         }
     }
 
+    public void upgrade(int X, int Y){
+        super.upgrade(X,Y);
+        if (X > getX() && X < getX()+20 && Y > getY() && Y < getY()+20){
+            setRM(getRM()+100);
+            setMH(getMH()+100);
+            setH(getMH());
+        }
+    }
+
 }

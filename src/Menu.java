@@ -31,9 +31,9 @@ public class Menu {
 
     public void paint(Graphics2D g) {
         if(SpiccyFlags.State== SpiccyFlags.STATE.Menu){
-            g.drawImage(logo, 250, 20,null);
-            g.drawImage(exit, 350, 400,200,100,null);
-            g.drawImage(start, 275, 300,375,125,null);
+            g.drawImage(logo, 265, 20,null);
+            g.drawImage(exit, 365, 400,200,100,null);
+            g.drawImage(start, 290, 300,375,125,null);
         }
         if(SpiccyFlags.State== SpiccyFlags.STATE.BlueWin)
             g.drawImage(blueWin, 275, 100,400,200,null);

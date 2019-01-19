@@ -1,5 +1,4 @@
 import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
 import java.io.*;
 
 public class Infantry extends Unit {
@@ -20,6 +19,16 @@ public class Infantry extends Unit {
             redUp = ImageIO.read(new File("res\\infantryRedUpgrade.png"));
             redUpUsed = ImageIO.read(new File("res\\infantryRedUpgradeUsed.png"));
         } catch (IOException e) {
+        }
+    }
+
+    public void upgrade(int X, int Y){
+        super.upgrade(X,Y);
+        if (X > getX() && X < getX()+20 && Y > getY() && Y < getY()+20){
+            setAV(getAV()+5);
+            setMH(getMH()+30);
+            setH(getMH());
+
         }
     }
 

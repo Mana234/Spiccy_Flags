@@ -23,7 +23,13 @@ public class Cavalier extends Unit {
         }
     }
 
-
+    public void upgrade(int X, int Y){
+        super.upgrade(X,Y);
+        if (X > getX() && X < getX()+20 && Y > getY() && Y < getY()+20){
+            setRM(getRM()+50);
+            setAV(getAV()+10);
+        }
+    }
 
     public void combatDealing(Unit other){
         super.combatDealing(other);
